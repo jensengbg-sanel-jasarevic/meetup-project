@@ -10,7 +10,7 @@ https://github.com/jensengbg-sanel-jasarevic/meetup-project
 
 ### Berätta vilka level ups du har implementerat
 
-###Demonstrera att du kan resonera och reflektera kring kursinnehållet, genom att berätta vad du tycker är det viktigaste kursen har handlat om.
+### Demonstrera att du kan resonera och reflektera kring kursinnehållet, genom att berätta vad du tycker är det viktigaste kursen har handlat om.
 
 ### Om du vill - skriv upp stegen du går igenom för att bygga en Docker container och publicera appen
 
