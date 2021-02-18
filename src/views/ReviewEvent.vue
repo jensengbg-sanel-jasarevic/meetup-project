@@ -1,18 +1,18 @@
 <template>
       <div class="review-event-box">
 
-          <Review  />
+      <ReviewInput  />
   </div>
 </template>
 
 <script>
-import Review from '@/components/Review.vue'
+import ReviewInput from '@/components/ReviewInput.vue'
 
 export default {
   name: 'ReviewEvent',
 
   components: {
-    Review,
+    ReviewInput,
   },
  
   
