@@ -1,6 +1,6 @@
 <template>
   <div class="upcoming-events">
-    <Event  />
+    <Event v-for="event in events" :key="event.id" :event="event" />
   </div>
 </template>
 
@@ -14,6 +14,11 @@ export default {
   Event
   },
 
+  computed: {
+  events() {
+    return this.$store.state.upcomingEvents;
+    },
+  }
 
 }
 </script>

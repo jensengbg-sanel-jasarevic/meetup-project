@@ -1,4 +1,5 @@
 import { shallowMount, mount } from '@vue/test-utils'
+import { mockEventData } from "./mockData"
 import Home from "@/views/Home.vue";
 
 // Should when created dispatch a action to vuex store
@@ -8,7 +9,13 @@ import Home from "@/views/Home.vue";
 
     it('should when component is mounted have a component with name "Event"', () => {
     // Arrange
-    const wrapper = mount(Home);
+    const wrapper = mount(Home, {
+      computed: {
+        events() {
+          return mockEventData()
+        }
+      }
+    })
     const expected = true
     
     // Act
