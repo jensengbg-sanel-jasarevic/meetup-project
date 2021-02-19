@@ -1,16 +1,13 @@
 import { shallowMount, mount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex';
 import VueRouter from 'vue-router'
-import { mockEventData } from "./mockData"
+import { mockUpcomingEventData, mockEventData } from "./mockData"
 import Home from "@/views/Home.vue";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 localVue.use(VueRouter);
 const router = new VueRouter()
-
-
-// Shoould get data from the Vuex store (should be array with upcoming events)
 
  describe('Home.vue', () => {
   let actions;
@@ -22,7 +19,9 @@ const router = new VueRouter()
       getAttending: jest.fn()
     };
     store = new Vuex.Store({
-      state: {},
+      state: {
+        upcomingEvents: [ mockUpcomingEventData() ]
+      },
       actions
     });
   });
@@ -44,7 +43,29 @@ const router = new VueRouter()
     expect(actualTwo).toHaveBeenCalled();
   });
 
-    it('should when component is mounted have a component with name "Event"', () => {
+  it('should when mounted get data from the Vuex store state ', () => {
+    // Arrange
+    const wrapper = shallowMount(Home, {
+      localVue,
+      store,
+      router,
+      computed: {
+        events() {
+          return store.state.upcomingEvents
+        }
+      }
+    })
+    
+    const expected = [ mockUpcomingEventData() ]
+    
+    // Act
+    const actual = wrapper.vm.events
+
+    // Assert
+    expect(actual).toStrictEqual(expected);
+  });
+
+    it('should when component mounted have child component with name "Event"', () => {
     // Arrange
     const wrapper = mount(Home, {
       localVue,

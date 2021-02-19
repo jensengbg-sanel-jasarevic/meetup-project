@@ -5,6 +5,17 @@ import ReviewEvent from "@/views/ReviewEvent.vue";
 
  describe('ReviewEvent.vue', () => {
 
+  it('Should have a go-back button', () => {
+    // Arrange
+    //const wrapper = shallowMount(ReviewEvent);
+    //const expected;
+    
+    // Act
+
+
+    // Assert
+  });
+
     it('should when component is mounted have a component with name "ReviewInput"', () => {
     // Arrange
     const wrapper = mount(ReviewEvent);

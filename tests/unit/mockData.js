@@ -1,3 +1,4 @@
+// Returns just object with key values
 function mockUpcomingEventData(){
     return {
         id: 111,
@@ -12,8 +13,10 @@ function mockUpcomingEventData(){
     }
 }
 
+// Returns a object that contain the event obj
 function mockEventData(){
-    return { event:{
+    return { 
+        event: {
         id: 222,
         image: "https://vuejs.org/images/logo.png",
         title: "Tech event",
@@ -22,9 +25,8 @@ function mockEventData(){
         details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Asperiores repellat.",
         attendees: 32,
         category: "Tech",
+        }
     }
-    }
-
 }
 
 module.exports = { mockUpcomingEventData, mockEventData };

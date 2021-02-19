@@ -1,6 +1,8 @@
 <template>
       <div class="review-event-box">
 
+       <button class="back-btn" @click="$router.go(-1)">Back</button>
+
       <ReviewInput  />
   </div>
 </template>
