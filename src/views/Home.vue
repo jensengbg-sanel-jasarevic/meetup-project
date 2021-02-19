@@ -14,11 +14,26 @@ export default {
   Event
   },
 
+  created() {
+    this.$store.dispatch("getUpcomingEvents");
+    this.$store.dispatch("getAttending")
+  },
+
   computed: {
-  events() {
+    events() {
     return this.$store.state.upcomingEvents;
     },
   }
+ 
 
 }
 </script>
+
+<style scoped>
+.upcoming-events {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 0.2rem;
+}
+</style>
+
