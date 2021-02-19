@@ -1,7 +1,7 @@
 import { shallowMount, mount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex';
 import VueRouter from 'vue-router'
-import { mockUpcomingEventData, mockEventData } from "./mockData"
+import { mockUpcomingEvent, mockEventObj } from "./mockData"
 import Home from "@/views/Home.vue";
 
 const localVue = createLocalVue();
@@ -20,7 +20,7 @@ const router = new VueRouter()
     };
     store = new Vuex.Store({
       state: {
-        upcomingEvents: [ mockUpcomingEventData() ]
+        upcomingEvents: [ mockUpcomingEvent() ]
       },
       actions
     });
@@ -35,15 +35,15 @@ const router = new VueRouter()
     });
 
     // Act
-    const actualOne = actions.getAttending
-    const actualTwo = actions.getUpcomingEvents
+    const actualOne = actions.getUpcomingEvents
+    const actualTwo = actions.getAttending
 
     // Assert
     expect(actualOne).toHaveBeenCalled();
     expect(actualTwo).toHaveBeenCalled();
   });
 
-  it('should when mounted get data from the Vuex store state ', () => {
+  it('should when mounted get correct data from the Vuex store state ', () => {
     // Arrange
     const wrapper = shallowMount(Home, {
       localVue,
@@ -56,7 +56,7 @@ const router = new VueRouter()
       }
     })
     
-    const expected = [ mockUpcomingEventData() ]
+    const expected = [ mockUpcomingEvent() ]
     
     // Act
     const actual = wrapper.vm.events
@@ -73,7 +73,7 @@ const router = new VueRouter()
       router,
       computed: {
         events() {
-          return mockEventData()
+          return mockEventObj()
         }
       }
     })

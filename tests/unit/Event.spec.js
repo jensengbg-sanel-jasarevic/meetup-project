@@ -1,6 +1,6 @@
   import { shallowMount, mount, createLocalVue } from '@vue/test-utils'
   import VueRouter from 'vue-router'
-  import { mockUpcomingEventData, mockEventData } from "./mockData"
+  import { mockEventObj, mockPreviousEvent, mockUpcomingEvent } from "./mockData"
   import Event from '@/components/Event.vue'
   
   const localVue = createLocalVue()
@@ -14,7 +14,7 @@
       const wrapper = shallowMount(Event, {
         localVue,
         router,
-        propsData: mockEventData()
+        propsData: mockEventObj()
       })
       const expected = true
           
@@ -50,7 +50,7 @@
       const wrapper = shallowMount(Event, {
           localVue,
           router,
-          propsData: mockEventData()
+          propsData: mockEventObj()
       })  
       const expected = true
    
@@ -70,7 +70,7 @@
         localVue,
         router,
         propsData: {
-          event: mockUpcomingEventData()
+          event: mockUpcomingEvent()
         }
       })  
       const expected = true
@@ -88,16 +88,16 @@
         localVue,
         router,
         propsData: {
-          event: mockEventData()
+          event: mockPreviousEvent()
         }
       })  
       const expected = true
    
       // Act       
-      const attendButton = wrapper.find(".review-button")
+      const reviewButton = wrapper.find(".review-button")
   
       // Assert
-      expect(attendButton.exists()).toBe(expected)
+      expect(reviewButton.exists()).toBe(expected)
     })
 
     it("should when component mounted display the correct props data", () => {
@@ -105,7 +105,7 @@
       const wrapper = shallowMount(Event, {
         localVue,
         router,
-        propsData: mockEventData()
+        propsData: mockEventObj()
       })  
 
       const expectedImage = "https://vuejs.org/images/logo.png";
