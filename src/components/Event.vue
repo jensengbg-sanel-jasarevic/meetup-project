@@ -3,7 +3,7 @@
 
           <div class="info">
           <img class="e-image" :src="event.image" alt="">
-          <p class="e-event">{{ event.event }}</p>
+          <p class="e-title">{{ event.title }}</p>
           <p class="e-city">{{ event.city }}</p>
           <p class="e-date">{{ event.date }}</p>
           </div>

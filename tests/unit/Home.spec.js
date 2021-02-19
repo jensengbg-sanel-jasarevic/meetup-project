@@ -1,10 +1,14 @@
 import { shallowMount, mount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex';
+import VueRouter from 'vue-router'
 import { mockEventData } from "./mockData"
 import Home from "@/views/Home.vue";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
+localVue.use(VueRouter);
+const router = new VueRouter()
+
 
 // Shoould get data from the Vuex store (should be array with upcoming events)
 
@@ -27,7 +31,8 @@ localVue.use(Vuex);
     // Arrange
     shallowMount(Home, {
       localVue,
-      store
+      store,
+      router
     });
 
     // Act
@@ -44,6 +49,7 @@ localVue.use(Vuex);
     const wrapper = mount(Home, {
       localVue,
       store,
+      router,
       computed: {
         events() {
           return mockEventData()
