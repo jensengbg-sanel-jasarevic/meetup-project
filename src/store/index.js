@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { setUpcomingEvents, setPreviousEvents, getLocalStorageAttending } from "@/localstorage_data/localstorageData.js";
-
+import { setUpcomingEvents, setPreviousEvents, getLocalStorageReviews, getLocalStorageAttending } from "@/localstorage_data/localstorageData.js";
 
 Vue.use(Vuex)
 
@@ -9,6 +8,7 @@ export default new Vuex.Store({
   state: {
     upcomingEvents: [], 
     previousEvents: [],
+    reviews: [],
     attending: []
   },
   mutations: {
@@ -18,12 +18,14 @@ export default new Vuex.Store({
     pushPreviousEvents(state, data) {
       state.previousEvents = data;
     },
+    pushReviews(state, data) {
+      state.reviews = data;
+    },    
     pushAttending(state, data) {
       state.attending = data;
     },
 
   },
-
   actions: {
     async getUpcomingEvents(ctx) {
       try {
@@ -37,6 +39,7 @@ export default new Vuex.Store({
         console.error(err)
       }
     },
+
     async getPreviousEvents(ctx) {
       try {
         setPreviousEvents()
@@ -48,7 +51,15 @@ export default new Vuex.Store({
       } catch (err) {
         console.error(err)
       }
-    },  
+    },
+
+    async getReviews(ctx) {
+      let localStorageReviews = await getLocalStorageReviews();
+      if (localStorageReviews) {
+        ctx.commit("pushReviews", localStorageReviews);
+      }
+    }, 
+
     async getAttending(ctx) {
       let localStorageAttending = await getLocalStorageAttending();
       if (localStorageAttending) {

@@ -1,6 +1,8 @@
 <template>
    <div class="">
 
+    <button @click="addNewReview">Leave a review</button>
+ 
   </div>
 </template>
 
@@ -8,6 +10,13 @@
 
 export default {
   name: 'ReviewInput',
+
+
+  methods: {
+    async addNewReview() {
+      this.$store.dispatch("addNewReview");
+    },
+  },
 
 }
 </script>

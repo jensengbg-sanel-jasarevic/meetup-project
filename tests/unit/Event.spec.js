@@ -9,7 +9,7 @@
 
   describe('Event.vue', () => {
   
-      it("should have a element with class '.event-box' if component get data from props", () => {
+      it("should have element with class '.event-box' if component get data from props", () => {
       // Arrange
       const wrapper = shallowMount(Event, {
         localVue,
@@ -64,7 +64,7 @@
     })
  
 
-    it("should have a button with class 'attend-button' if data from props is a upcoming event", () => {
+    it("should have button with class 'attend-button' if data from props is a upcoming event", () => {
       // Arrange
       const wrapper = shallowMount(Event, {
         localVue,
@@ -82,7 +82,7 @@
       expect(attendButton.exists()).toBe(expected)
     })
 
-    it("should have a button with class 'review-button' if data from props is not upcoming event", () => {
+    it("should have button with class 'review-button' if data from props is not upcoming event", () => {
       // Arrange
       const wrapper = shallowMount(Event, {
         localVue,

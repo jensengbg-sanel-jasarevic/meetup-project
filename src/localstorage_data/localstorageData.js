@@ -41,4 +41,11 @@ const upcoming =  [
     }
   }
 
-  export { setUpcomingEvents, setPreviousEvents, getLocalStorageAttending };
+  function getLocalStorageReviews() {
+    let getLocalStorageReviews = localStorage.getItem("reviews");
+    if (getLocalStorageReviews) {
+      return JSON.parse(getLocalStorageReviews);
+    }
+  }
+
+  export { setUpcomingEvents, setPreviousEvents, getLocalStorageAttending, getLocalStorageReviews };
