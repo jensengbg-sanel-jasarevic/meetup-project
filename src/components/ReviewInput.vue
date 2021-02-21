@@ -1,26 +1,35 @@
 <template>
   <div v-if="getAllReviews" class="all-reviews">
-    <input v-model="inputReview" type="text"  class="review-input">
-        
-    <button @click="addNewReview">Leave a review</button>
+    <form @submit.prevent="addNewReview">
+    <label for="review" :id="event.id">
+    <input v-model="inputReviewText" :id="event.id" type="text" class="review-input">
+    </label>
 
-    <p>{{ reviewsForSpecificEvent }}</p>
+    <button type="submit" >Leave a review</button>
+    </form>
+
+    <EventReviews v-for="review in reviewsForSpecificEvent" :key="review.reviewId" :review="review" />
   </div>
 </template>
 
 <script>
+import EventReviews from '@/components/EventReviews.vue'
 
 export default {
   name: 'ReviewInput',
+  
+  data() {
+    return {
+      inputReviewText: "",
+    };
+  },
 
   props: {
     event: Object,
   },
 
-  data() {
-    return {
-      inputReview: "",
-    };
+ components: {
+  EventReviews
   },
 
   computed: {
@@ -29,25 +38,27 @@ export default {
     },
     
     reviewsForSpecificEvent() {
-      let specificEventReviews = this.getAllReviews.filter((review) => review.eventId === this.event.id);
-      return specificEventReviews;  
+      return this.getAllReviews.filter((review) => review.eventId === this.event.id);
     },
   },
 
   methods: {
     async addNewReview() {
       const newReview = {
-        review: this.inputReview,
+        reviewText: this.inputReviewText,
         reviewId: Math.floor(Math.random() * 101),
         eventId: this.event.id,
       };      
       this.$store.dispatch("addNewReview", newReview);
-      this.inputReview = "";    },
+      this.inputReviewText = "";    
+      },
     },
 
 }
 </script>
 
 <style scoped>
-
+.review-input {
+  height: 45px;
+}
 </style>

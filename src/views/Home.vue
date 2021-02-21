@@ -21,11 +21,10 @@ export default {
 
   computed: {
     events() {
-    return this.$store.state.upcomingEvents;
+      return this.$store.state.upcomingEvents;
     },
   }
  
-
 }
 </script>
 

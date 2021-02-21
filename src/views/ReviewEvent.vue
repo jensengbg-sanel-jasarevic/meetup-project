@@ -1,7 +1,8 @@
 <template>
       <div class="review-event-box">
-
-       <button class="back-btn" @click="$router.go(-1)">Back</button>
+        <!--<div class="review-event-date">{{ event.date }} </div>-->
+       
+        <button class="back-btn" @click="$router.go(-1)">Back</button>
 
       <ReviewInput :event="event" />
   </div>
@@ -22,12 +23,10 @@ export default {
     this.$store.dispatch("getReviews"); 
   },
 
-   computed: {
+  computed: {
     event() {
-      if (this.$route) {
-        let id = this.$route.params.id;
+      let id = this.$route.params.id;
         return this.$store.state.previousEvents.find((event) => event.id == id);
-      }
     }
   }, 
   

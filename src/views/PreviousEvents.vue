@@ -9,22 +9,22 @@ import Event from '@/components/Event.vue'
 
 export default {
   name: 'PreviousEvents',
-  
-  created() {
-    this.$store.dispatch("getPreviousEvents");
-    this.$store.dispatch("getReviews");
-  },
 
   components: {
       Event
     },
 
+  created() {
+    this.$store.dispatch("getPreviousEvents");
+    this.$store.dispatch("getReviews");
+  },
+
   computed: {
     preEvents() {
-    return this.$store.state.previousEvents
+      return this.$store.state.previousEvents
     },
-    
   }
+
 }
 </script>
 

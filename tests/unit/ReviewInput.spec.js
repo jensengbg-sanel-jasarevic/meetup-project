@@ -1,4 +1,4 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils'
+import { shallowMount, mount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import ReviewInput from "@/components/ReviewInput.vue";
 import { mockEventObj, mockPreviousEvent, mockUpcomingEvent } from "./mockData"
@@ -19,7 +19,7 @@ describe('ReviewInput.vue', () => {
     let reviews = [ 
                   { review: "Example review",
                     reviewId: Math.floor(Math.random() * 101),
-                    eventId: "222"
+                    eventId: 222
                   }
                 ]
 
@@ -51,21 +51,48 @@ describe('ReviewInput.vue', () => {
       expect(getAllReviews).toBe(getters.getterReviews())
     })
   
-    it('should dispatch action "addNewReview" to vuex store when button clicked', async () => {
+    it('should dispatch action "addNewReview" to Vuex store when submit review with button', async () => {
         // Arrange
         const wrapper = shallowMount(ReviewInput, { 
           store,
           localVue,
           propsData: mockEventObj()
         }) 
-        const btn = wrapper.find('button')
+        const submitButton = wrapper.find('button')
 
         // Act
-        await btn.trigger('click')
+        await submitButton.trigger('submit')
         const actual = actions.addNewReview
 
         /// Assert
         expect(actual).toHaveBeenCalled()
     })
+
+    it('should when component mounted have child component with name "EventReviews"', () => {
+      // Arrange
+      const wrapper = mount(ReviewInput , {
+        localVue,
+        store,
+        propsData: mockEventObj(),
+        computed: {
+          getAllReviews() {
+            return store.getters.getterReviews;
+          },
+          reviewsForSpecificEvent() {
+          return this.getAllReviews.filter((review) => review.eventId === this.event.id);
+          }
+        }        
+      })
+
+      const expected = true
+      
+      // Act
+      const actual = wrapper.findComponent({
+        name: "EventReviews",
+      });
+  
+      // Assert
+      expect(actual.exists()).toBe(expected);
+    });
   
   })

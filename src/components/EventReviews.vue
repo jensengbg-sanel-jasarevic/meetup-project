@@ -1,5 +1,6 @@
 <template>
   <div class="">
+      <p>{{review.reviewText}}</p>
   </div>
 </template>
 
@@ -7,7 +8,11 @@
 
 export default {
   name: 'EventReviews',
-  
+
+  props: {
+    review: Object,
+  },
+
 }
 </script>
 

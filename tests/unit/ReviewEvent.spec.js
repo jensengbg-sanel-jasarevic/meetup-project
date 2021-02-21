@@ -1,13 +1,14 @@
 import { shallowMount, mount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex';
+import VueRouter from 'vue-router'
 import { mockPreviousEvent, mockEventObj } from "./mockData"
 import ReviewEvent from "@/views/ReviewEvent.vue";
 
-// It should have a go-back button
-// It should check if route id is the same as vuex store previous event 
-
 const localVue = createLocalVue();
 localVue.use(Vuex);
+localVue.use(VueRouter);
+
+const router = new VueRouter()
 
  describe('ReviewEvent.vue', () => {
   let actions;
@@ -26,13 +27,18 @@ localVue.use(Vuex);
     });
   });
 
-  it('Should have a go-back button', () => {
+  it('should check if route id is the same as vuex store previous event', async () => {
     // Arrange
-    //const wrapper = shallowMount(ReviewEvent);
-    //const expected;
-    
+
     // Act
 
+    // Assert
+  });
+
+  it('should have a go-back button', () => {
+    // Arrange
+    
+    // Act
 
     // Assert
   });
@@ -41,7 +47,8 @@ localVue.use(Vuex);
     // Arrange
     const wrapper = mount(ReviewEvent, {
       localVue,
-      store
+      store,
+      router
     });
     const expected = true
     
