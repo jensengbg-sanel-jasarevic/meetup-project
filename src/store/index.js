@@ -20,7 +20,11 @@ export default new Vuex.Store({
     },
     pushReviews(state, data) {
       state.reviews = data;
-    },    
+    },
+    addToReviews(state, newReview) {
+      state.reviews.push(newReview);
+      localStorage.setItem("reviews", JSON.stringify(state.reviews));
+    },      
     pushAttending(state, data) {
       state.attending = data;
     },
@@ -65,6 +69,10 @@ export default new Vuex.Store({
       if (localStorageAttending) {
         ctx.commit("pushAttending", localStorageAttending);
       }
+    },
+
+    addNewReview(context, newReview) {
+      context.commit("addToReviews", newReview);
     },
           
   },
