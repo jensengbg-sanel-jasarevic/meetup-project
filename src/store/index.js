@@ -69,5 +69,12 @@ export default new Vuex.Store({
           
   },
   modules: {
+  },
+
+  getters: { 
+    getterReviews: state => {
+      return state.reviews;
+    }
   }
+
 })

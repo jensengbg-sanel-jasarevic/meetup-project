@@ -3,7 +3,7 @@
 
        <button class="back-btn" @click="$router.go(-1)">Back</button>
 
-      <ReviewInput  />
+      <ReviewInput :event="event" />
   </div>
 </template>
 
@@ -16,7 +16,20 @@ export default {
   components: {
     ReviewInput,
   },
- 
+
+  created() {
+    this.$store.dispatch("getPreviousEvents"); 
+    this.$store.dispatch("getReviews"); 
+  },
+
+   computed: {
+    event() {
+      if (this.$route) {
+        let id = this.$route.params.id;
+        return this.$store.state.previousEvents.find((event) => event.id == id);
+      }
+    }
+  }, 
   
 }
 </script>
