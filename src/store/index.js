@@ -20,14 +20,20 @@ export default new Vuex.Store({
     },
     pushReviews(state, data) {
       state.reviews = data;
+    },    
+    pushAttending(state, data) {
+      state.attending = data;
     },
     addToReviews(state, newReview) {
       state.reviews.push(newReview);
       localStorage.setItem("reviews", JSON.stringify(state.reviews));
-    },      
-    pushAttending(state, data) {
-      state.attending = data;
     },
+    addToAttending(state, newAttending) {
+      if (!state.attending.find((event) => event.id === newAttending.id)) {
+      state.attending.push(newAttending);
+      localStorage.setItem("attending", JSON.stringify(state.attending));
+      }
+    },    
 
   },
   actions: {
@@ -73,6 +79,10 @@ export default new Vuex.Store({
 
     addNewReview(context, newReview) {
       context.commit("addToReviews", newReview);
+    },
+
+    addNewAttending(context, newAttending) {
+      context.commit("addToAttending", newAttending);
     },
           
   },

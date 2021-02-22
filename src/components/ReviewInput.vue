@@ -5,7 +5,7 @@
     <input v-model="inputReviewText" :id="event.id" type="text" class="review-input">
     </label>
 
-    <button type="submit" >Leave a review</button>
+    <button type="submit">Post review</button>
     </form>
 
     <EventReviews v-for="review in reviewsForSpecificEvent" :key="review.reviewId" :review="review" />

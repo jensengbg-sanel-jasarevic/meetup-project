@@ -23,6 +23,7 @@ export default {
     events() {
       return this.$store.state.upcomingEvents;
     },
+
   }
  
 }

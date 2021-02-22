@@ -10,7 +10,6 @@ const localVue = createLocalVue();
 localVue.use(VueRouter);
 localVue.use(Vuex);
 const router = new VueRouter();
-router.push("/description/1");
 
  describe('ReviewEvent.vue', () => {
   let actions;
@@ -44,7 +43,7 @@ router.push("/description/1");
 
     // Assert
   });
-/*
+
     it('should when component is mounted have a component with name "ReviewInput"', () => {
     // Arrange
     const wrapper = mount(ReviewEvent, {
@@ -62,5 +61,5 @@ router.push("/description/1");
     // Assert
     expect(actual.exists()).toBe(expected);
   });
-*/
+
 })

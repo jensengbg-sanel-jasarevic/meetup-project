@@ -3,17 +3,17 @@
 
           <div class="info">
           <img class="e-image" :src="event.image" alt="">
-          <p class="e-title">{{ event.title }}</p>
-          <p class="e-city">{{ event.city }}</p>
           <p class="e-date">{{ event.date }}</p>
+          <h4 class="e-title">{{ event.title }}</h4>
+          <p class="e-city">{{ event.city }}</p>
           </div>
 
          <div v-if="event.upcoming">
-          <button @click="routerToAttend(event.id)" class="attend-button">Click to attend event</button>
+          <button @click="routerToAttend(event.id)" class="attend-button">More info</button>
          </div>
          
          <div v-if="!event.upcoming">
-          <button @click="routerToReviews(event.id)" class="review-button">Click to review event</button>
+          <button @click="routerToReviews(event.id)" class="review-button">Reviews</button>
          </div>
 
      </div>
