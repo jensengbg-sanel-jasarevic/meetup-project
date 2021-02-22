@@ -43,7 +43,7 @@ const router = new VueRouter()
     expect(actualTwo).toHaveBeenCalled();
   });
 
-  it('should when mounted get correct data from the Vuex store state ', () => {
+  it('should when mounted get correct data from the Vuex store state', () => {
     // Arrange
     const wrapper = shallowMount(Home, {
       localVue,

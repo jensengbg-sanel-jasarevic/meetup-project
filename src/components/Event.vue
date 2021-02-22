@@ -8,13 +8,13 @@
           <p class="e-date">{{ event.date }}</p>
           </div>
 
-          <router-link v-bind:to="'/attendevent/' + event.id">
-          <button class="attend-button" v-if="event.upcoming">Click to attend event</button>
-          </router-link>
-
-          <router-link v-bind:to="'/reviewevent/' + event.id">
-          <button class="review-button" v-if="!event.upcoming">Click to review event</button>
-          </router-link>
+         <div v-if="event.upcoming">
+          <button @click="routerToAttend(event.id)" class="attend-button">Click to attend event</button>
+         </div>
+         
+         <div v-if="!event.upcoming">
+          <button @click="routerToReviews(event.id)" class="review-button">Click to review event</button>
+         </div>
 
      </div>
 </template>
@@ -27,7 +27,15 @@ export default {
   props: {
     event: Object,
   },
- 
+  
+ methods: {
+    routerToAttend(eventId) {
+      this.$router.push("/attendevent/" + eventId);
+    },   
+    routerToReviews(eventId) {
+      this.$router.push("/reviewevent/" + eventId);
+    },
+  }
 }
 </script>
 

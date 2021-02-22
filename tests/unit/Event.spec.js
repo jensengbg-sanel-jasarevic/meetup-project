@@ -2,13 +2,13 @@
   import VueRouter from 'vue-router'
   import { mockEventObj, mockPreviousEvent, mockUpcomingEvent } from "./mockData"
   import Event from '@/components/Event.vue'
-  
+
   const localVue = createLocalVue()
   localVue.use(VueRouter)
   const router = new VueRouter()
 
   describe('Event.vue', () => {
-  
+    
       it("should have element with class '.event-box' if component get data from props", () => {
       // Arrange
       const wrapper = shallowMount(Event, {
@@ -45,7 +45,7 @@
     })
 
     
-    it("should if element with class '.event-box' exist have a element with class '.info'", () => {
+    it("should if element with class '.event-box' exist have element with class '.info'", () => {
       // Arrange
       const wrapper = shallowMount(Event, {
           localVue,
@@ -64,7 +64,7 @@
     })
  
 
-    it("should have button with class 'attend-button' if data from props is a upcoming event", () => {
+    it("should have button with class 'attend-button' if data from props is upcoming event", () => {
       // Arrange
       const wrapper = shallowMount(Event, {
         localVue,
@@ -99,6 +99,23 @@
       // Assert
       expect(reviewButton.exists()).toBe(expected)
     })
+
+    it('should check if the router links to correct path when button for review is clicked', async () => {
+      // Arrange
+      const wrapper = shallowMount(Event, {
+        localVue,
+        router,
+        propsData: mockEventObj()
+      });
+      const expected = "/reviewevent/222"
+      const reviewButton = wrapper.find('.review-button')
+
+      // Act
+      await reviewButton.trigger('click')
+      const actual = wrapper.vm.$route.path
+
+      expect(actual).toBe(expected)
+  })
 
     it("should when component mounted display the correct props data", () => {
       // Arrange

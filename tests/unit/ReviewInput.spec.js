@@ -10,7 +10,6 @@ localVue.use(Vuex)
 // Should have button to submit review
 // Should clear input field if button clicked
 // Should when submitted call on a method 
-// Should have child component EventReviews
 
 describe('ReviewInput.vue', () => {
     let actions;
@@ -35,6 +34,24 @@ describe('ReviewInput.vue', () => {
         actions
       })
     })
+
+    it('should check if input field store correct review value in components data', async () => {
+      // Arrange
+      const wrapper = shallowMount(ReviewInput, { 
+        store,
+        localVue,
+        propsData: mockEventObj()
+      })
+      const reviewInput = wrapper.find('.review-input')
+      const expected = "My review text"
+
+      // Act
+      await reviewInput.setValue('My review text')
+      const actual = wrapper.vm.inputReviewText
+      
+      // Assert
+      expect(actual).toBe(expected)
+  })
 
     it('should when mounted render reviews from Vuex store getters', async () => {
       // Arrange
