@@ -1,6 +1,6 @@
   import { shallowMount, mount, createLocalVue } from '@vue/test-utils'
-  import VueRouter from 'vue-router'
   import { mockEventObj, mockPreviousEvent, mockUpcomingEvent } from "./mockData"
+  import VueRouter from 'vue-router'
   import Event from '@/components/Event.vue'
 
   const localVue = createLocalVue()
@@ -55,11 +55,11 @@
       const expected = true
    
       // Act
-       const findClassElement = wrapper.find(".event-box");
-       expect(findClassElement.exists()).toBe(expected)
-       const infoClassElement = wrapper.find(".info")
+      const findClassElement = wrapper.find(".event-box");
+      const infoClassElement = wrapper.find(".info")
   
       // Assert
+      expect(findClassElement.exists()).toBe(expected)
       expect(infoClassElement.exists()).toBe(expected)
     })
  

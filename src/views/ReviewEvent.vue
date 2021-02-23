@@ -1,10 +1,9 @@
 <template>
       <div class="review-event-box">
-        <!--<div class="review-event-date">{{ event.date }} </div>-->
+      <!--<div class="review-event-date">{{ event.date }} </div>-->
        
-        <button class="back-btn" @click="$router.go(-1)">Back</button>
-
       <ReviewInput :event="event" />
+      <button class="back-btn" @click="$router.go(-1)">Back</button>
   </div>
 </template>
 

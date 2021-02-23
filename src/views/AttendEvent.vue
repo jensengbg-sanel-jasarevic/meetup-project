@@ -7,7 +7,7 @@
             <div class="attend-event-details">{{ event.details }} </div>
             <h2>Attendees ({{ event.attendees }})</h2>
 
-            <button class="back-btn" @click="$router.go(-1)">Back</button>
+            <button class="goback-btn" @click="$router.go(-1)">Back</button>
             <AttendBtn @click.native="addNewAttending" />
         </div>
 </template>

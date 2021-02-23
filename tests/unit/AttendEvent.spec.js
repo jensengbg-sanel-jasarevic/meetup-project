@@ -1,7 +1,7 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
+import { mockUpcomingEvent, mockEventObj } from "./mockData"
 import Vuex from 'vuex';
 import VueRouter from 'vue-router'
-import { mockUpcomingEvent, mockEventObj } from "./mockData"
 import AttendEvent from "@/views/AttendEvent.vue";
 
 const localVue = createLocalVue();
@@ -10,8 +10,8 @@ localVue.use(VueRouter);
 const router = new VueRouter()
 
 describe('AttendEvent.vue', () => {
-	let actions;
 	let store;
+	let actions;
 	  
 	beforeEach(() => {
 		actions = {
@@ -81,8 +81,8 @@ describe('AttendEvent.vue', () => {
 		// Arrange
 		const wrapper = shallowMount(AttendEvent, {
 			localVue,
-			store,
 			router,
+			store,
 			computed: {
 			event() {
 				let id = 111
@@ -91,7 +91,7 @@ describe('AttendEvent.vue', () => {
 			}
 		})
 		const expected = true
-		const button = wrapper.find('.back-btn')
+		const button = wrapper.find('.goback-btn')
 
 		// Act
 		const actual = button.exists()

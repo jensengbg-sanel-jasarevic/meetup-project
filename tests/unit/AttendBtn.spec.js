@@ -13,7 +13,7 @@ const router = new VueRouter()
 
 describe('AttendBtn.vue', () => {
 	let store;
-	  
+
 	beforeEach(() => {
 
 		store = new Vuex.Store({
@@ -28,8 +28,8 @@ describe('AttendBtn.vue', () => {
 		// Arrange
 		const wrapper = shallowMount(AttendBtn, {
 			localVue,
-			store,
 			router,
+			store,
             })
 		const expected = "Register for event"
 
@@ -43,7 +43,7 @@ describe('AttendBtn.vue', () => {
         expect(actualText).toBe(expected)
 	})    
 
-    it('should have "p" element display text only if event already found in store via computed property', () => {
+    it('should have "p" tag that display text only if registered event found in Vuex store via computed property', () => {
 		// Arrange
 		const wrapper = shallowMount(AttendBtn, {
             localVue,
@@ -52,7 +52,7 @@ describe('AttendBtn.vue', () => {
 			computed: {
             checkIfAttending() {
                 let id = 111
-                    return store.state.attending.find((event) => event.id == id);
+                	return store.state.attending.find((event) => event.id == id);
                 }
             }            
 		})

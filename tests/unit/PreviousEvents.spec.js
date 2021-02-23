@@ -10,20 +10,22 @@ localVue.use(VueRouter);
 const router = new VueRouter()
 
 describe('PreviousEvents.vue', () => {
-    let actions;
     let store;
+    let actions;
 
     beforeEach(() => {
       actions = {
         getPreviousEvents: jest.fn(),
         getReviews: jest.fn()
       };
+
       store = new Vuex.Store({
         state: {
           previousEvents: [ mockPreviousEvent() ]
         },
         actions
       });
+      
     });
   
     it('should when created dispatch two actions to Vuex store', () => {

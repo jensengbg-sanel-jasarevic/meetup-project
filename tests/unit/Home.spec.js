@@ -1,7 +1,7 @@
 import { shallowMount, mount, createLocalVue } from '@vue/test-utils'
+import { mockUpcomingEvent, mockEventObj } from "./mockData"
 import Vuex from 'vuex';
 import VueRouter from 'vue-router'
-import { mockUpcomingEvent, mockEventObj } from "./mockData"
 import Home from "@/views/Home.vue";
 
 const localVue = createLocalVue();
@@ -10,20 +10,22 @@ localVue.use(VueRouter);
 const router = new VueRouter()
 
  describe('Home.vue', () => {
-  let actions;
   let store;
+  let actions;
 
   beforeEach(() => {
     actions = {
       getUpcomingEvents: jest.fn(),
       getAttending: jest.fn()
     };
+    
     store = new Vuex.Store({
       state: {
         upcomingEvents: [ mockUpcomingEvent() ]
       },
       actions
     });
+    
   });
 
   it('should when created dispatch two actions to Vuex store', () => {

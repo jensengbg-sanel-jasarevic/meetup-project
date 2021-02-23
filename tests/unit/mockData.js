@@ -1,4 +1,4 @@
-// Returns a object that contain the event obj
+// Return a object that contain the event obj
 function mockEventObj(){
     return { 
         event: 
@@ -43,4 +43,12 @@ function mockPreviousEvent(){
     }
 }
 
-module.exports = { mockEventObj, mockUpcomingEvent, mockPreviousEvent };
+function mockReview() {
+    return {
+        reviewText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+        reviewId: 341,
+        eventId: 222                    
+    }
+}
+
+module.exports = { mockEventObj, mockUpcomingEvent, mockPreviousEvent, mockReview };

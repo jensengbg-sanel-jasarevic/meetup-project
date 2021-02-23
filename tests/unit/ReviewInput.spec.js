@@ -1,45 +1,44 @@
 import { shallowMount, mount, createLocalVue } from '@vue/test-utils'
+import { mockEventObj, mockPreviousEvent, mockReview } from "./mockData"
 import Vuex from 'vuex'
 import ReviewInput from "@/components/ReviewInput.vue";
-import { mockEventObj, mockPreviousEvent, mockUpcomingEvent } from "./mockData"
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
 
+// Should check if computed getting specific event is getting correct event data
+// (set propsdata and then read vm to check)
 // Should have input field for leaving review
 // Should have button to submit review
 // Should clear input field if button clicked
 // Should when submitted call on a method 
 
 describe('ReviewInput.vue', () => {
+    let store;
     let actions;
     let getters;
-    let store;
-    let reviews = [ 
-                  { review: "Example review",
-                    reviewId: Math.floor(Math.random() * 101),
-                    eventId: 222
-                  }
-                ]
+    let reviews = [ mockReview() ]
 
     beforeEach(() => {
       getters = {
         getterReviews: () => reviews
       }
+
       actions = {
         addNewReview: jest.fn(),
       }
+
       store = new Vuex.Store({
-        getters,
-        actions
+        actions,
+        getters
       })
     })
 
     it('should check if input field store correct review value in components data', async () => {
       // Arrange
       const wrapper = shallowMount(ReviewInput, { 
-        store,
         localVue,
+        store,
         propsData: mockEventObj()
       })
       const reviewInput = wrapper.find('.review-input')
@@ -53,26 +52,27 @@ describe('ReviewInput.vue', () => {
       expect(actual).toBe(expected)
   })
 
-    it('should when mounted render reviews from Vuex store getters', async () => {
+    it('should when mounted render correct data from Vuex store getters', () => {
       // Arrange
       const wrapper = shallowMount(ReviewInput, { 
-        store,
         localVue,
+        store,
         propsData: mockEventObj()
       })
+      const expected = getters.getterReviews()
 
       // Act
-      const getAllReviews = wrapper.vm.getAllReviews
+      const actual = wrapper.vm.getAllReviews
 
       /// Assert
-      expect(getAllReviews).toBe(getters.getterReviews())
+      expect(actual).toBe(expected)
     })
   
-    it('should dispatch action "addNewReview" to Vuex store when submit review with button', async () => {
+    it('should when submit the button dispatch action "addNewReview" to Vuex store', async () => {
         // Arrange
         const wrapper = shallowMount(ReviewInput, { 
-          store,
           localVue,
+          store,
           propsData: mockEventObj()
         }) 
         const submitButton = wrapper.find('button')
@@ -90,17 +90,8 @@ describe('ReviewInput.vue', () => {
       const wrapper = mount(ReviewInput , {
         localVue,
         store,
-        propsData: mockEventObj(),
-        computed: {
-          getAllReviews() {
-            return store.getters.getterReviews;
-          },
-          reviewsForSpecificEvent() {
-          return this.getAllReviews.filter((review) => review.eventId === this.event.id);
-          }
-        }        
+        propsData: mockEventObj(),          
       })
-
       const expected = true
       
       // Act
@@ -109,7 +100,7 @@ describe('ReviewInput.vue', () => {
       });
   
       // Assert
-      expect(actual.exists()).toBe(expected);
+      expect(actual.exists()).toBe(true);
     });
   
   })

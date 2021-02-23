@@ -1,10 +1,9 @@
 import { shallowMount, mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
+import { mockPreviousEvent, mockEventObj } from "./mockData"
 import Vuex from 'vuex';
 import VueRouter from 'vue-router'
-import { mockPreviousEvent, mockEventObj } from "./mockData"
 import ReviewEvent from "@/views/ReviewEvent.vue";
 import ReviewInput from "@/components/ReviewInput.vue";
-
 
 const localVue = createLocalVue();
 localVue.use(VueRouter);
@@ -12,20 +11,22 @@ localVue.use(Vuex);
 const router = new VueRouter();
 
  describe('ReviewEvent.vue', () => {
-  let actions;
   let store;
+  let actions;
 
   beforeEach(() => {
     actions = {
       getPreviousEvents: jest.fn(),
       getReviews: jest.fn()
     };
+
     store = new Vuex.Store({
       state: {
         previousEvents: [ mockPreviousEvent() ]
       },
       actions
     });
+
   });
 
   it('should check if route id is the same as vuex store previous event', async () => {
@@ -48,8 +49,8 @@ const router = new VueRouter();
     // Arrange
     const wrapper = mount(ReviewEvent, {
       localVue,
-      store,
-      router
+      router,
+      store
     });
     const expected = true
     
