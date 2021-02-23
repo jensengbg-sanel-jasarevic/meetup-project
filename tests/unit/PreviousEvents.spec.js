@@ -1,16 +1,14 @@
 import { shallowMount, mount, createLocalVue } from '@vue/test-utils'
-import { mockPreviousEvent, mockEventObj } from "./mockData"
+import { mockPreviousEvent,  } from "./mockData"
 import Vuex from 'vuex';
-import VueRouter from 'vue-router'
 import PreviousEvents from "@/views/PreviousEvents.vue";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
-localVue.use(VueRouter);
-const router = new VueRouter()
 
 describe('PreviousEvents.vue', () => {
     let store;
+    let state;
     let actions;
 
     beforeEach(() => {
@@ -18,11 +16,12 @@ describe('PreviousEvents.vue', () => {
         getPreviousEvents: jest.fn(),
         getReviews: jest.fn()
       };
+      state = {
+        previousEvents: [ mockPreviousEvent() ]
+      };      
 
       store = new Vuex.Store({
-        state: {
-          previousEvents: [ mockPreviousEvent() ]
-        },
+        state,
         actions
       });
       
@@ -32,8 +31,7 @@ describe('PreviousEvents.vue', () => {
       // Arrange
       shallowMount(PreviousEvents, {
         localVue,
-        store,
-        router
+        store
       });
   
       // Act
@@ -45,19 +43,12 @@ describe('PreviousEvents.vue', () => {
       expect(actualTwo).toHaveBeenCalled();
     });
   
-    it('should when mounted get correct data from the Vuex store state ', () => {
+    it('should when mounted render data from Vuex store state via computed property', () => {
       // Arrange
       const wrapper = shallowMount(PreviousEvents, {
         localVue,
-        store,
-        router,
-        computed: {
-          preEvents() {
-            return store.state.previousEvents
-          }
-        }
+        store
       })
-      
       const expected = [ mockPreviousEvent() ]
       
       // Act
@@ -71,15 +62,8 @@ describe('PreviousEvents.vue', () => {
       // Arrange
       const wrapper = mount(PreviousEvents, {
         localVue,
-        store,
-        router,
-        computed: {
-          preEvents() {
-            return mockEventObj()
-          }
-        }
+        store
       })
-      
       const expected = true
       
       // Act

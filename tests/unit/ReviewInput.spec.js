@@ -41,10 +41,10 @@ describe('ReviewInput.vue', () => {
         store,
         propsData: mockEventObj()
       })
-      const reviewInput = wrapper.find('.review-input')
       const expected = "My review text"
 
       // Act
+      const reviewInput = wrapper.find('.review-input')
       await reviewInput.setValue('My review text')
       const actual = wrapper.vm.inputReviewText
       
@@ -100,7 +100,7 @@ describe('ReviewInput.vue', () => {
       });
   
       // Assert
-      expect(actual.exists()).toBe(true);
+      expect(actual.exists()).toBe(expected);
     });
   
   })

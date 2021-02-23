@@ -1,6 +1,6 @@
 <template>
-      <div  class="">
-            <button class="attend-btn">Register for event</button>
+      <div class="">
+            <button class="attend-btn" >Register for event</button>
             <p v-if="checkIfAttending">This event is registered!</p> 
         </div>
 </template>

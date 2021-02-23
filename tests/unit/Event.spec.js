@@ -1,4 +1,4 @@
-  import { shallowMount, mount, createLocalVue } from '@vue/test-utils'
+  import { shallowMount, createLocalVue } from '@vue/test-utils'
   import { mockEventObj, mockPreviousEvent, mockUpcomingEvent } from "./mockData"
   import VueRouter from 'vue-router'
   import Event from '@/components/Event.vue'
@@ -6,14 +6,20 @@
   const localVue = createLocalVue()
   localVue.use(VueRouter)
   const router = new VueRouter()
-
+/*
+const $route = { path: 'http://www.example-path.com' }
+const wrapper = shallowMount(Component, {
+  mocks: {
+    $route
+  }
+})
+expect(wrapper.vm.$route.path).toBe($route.path)
+*/
   describe('Event.vue', () => {
     
-      it("should have element with class '.event-box' if component get data from props", () => {
+      it("should have element with class '.event-box' if component get props data", () => {
       // Arrange
       const wrapper = shallowMount(Event, {
-        localVue,
-        router,
         propsData: mockEventObj()
       })
       const expected = true
@@ -27,13 +33,9 @@
       })
       
   
-    it("should not have element with class '.event-box' if component get no data from props", () => {
+    it("should not have element with class '.event-box' if component get no props data", () => {
       // Arrange
-      const wrapper = shallowMount(Event, {
-        localVue,
-        router,
-        propsData: {}
-      })  
+      const wrapper = shallowMount(Event) 
       const expected = false
   
       // Act
@@ -48,8 +50,6 @@
     it("should if element with class '.event-box' exist have element with class '.info'", () => {
       // Arrange
       const wrapper = shallowMount(Event, {
-          localVue,
-          router,
           propsData: mockEventObj()
       })  
       const expected = true
@@ -67,8 +67,6 @@
     it("should have button with class 'attend-button' if data from props is upcoming event", () => {
       // Arrange
       const wrapper = shallowMount(Event, {
-        localVue,
-        router,
         propsData: {
           event: mockUpcomingEvent()
         }
@@ -85,8 +83,6 @@
     it("should have button with class 'review-button' if data from props is not upcoming event", () => {
       // Arrange
       const wrapper = shallowMount(Event, {
-        localVue,
-        router,
         propsData: {
           event: mockPreviousEvent()
         }
@@ -108,9 +104,9 @@
         propsData: mockEventObj()
       });
       const expected = "/reviewevent/222"
-      const reviewButton = wrapper.find('.review-button')
 
       // Act
+      const reviewButton = wrapper.find('.review-button')
       await reviewButton.trigger('click')
       const actual = wrapper.vm.$route.path
 
@@ -120,11 +116,8 @@
     it("should when component mounted display the correct props data", () => {
       // Arrange
       const wrapper = shallowMount(Event, {
-        localVue,
-        router,
         propsData: mockEventObj()
       })  
-
       const expectedImage = "https://vuejs.org/images/logo.png";
       const expectedEvent = "Tech event";
       const expectedCity = "Malmö";

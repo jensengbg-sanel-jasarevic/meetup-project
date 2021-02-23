@@ -1,50 +1,54 @@
-import { shallowMount, createLocalVue } from "@vue/test-utils";
-import { mockUpcomingEvent, mockEventObj } from "./mockData"
+import { shallowMount, mount, createLocalVue } from "@vue/test-utils";
+import { mockUpcomingEvent } from "./mockData"
 import Vuex from 'vuex';
-import VueRouter from 'vue-router'
 import AttendEvent from "@/views/AttendEvent.vue";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
-localVue.use(VueRouter);
-const router = new VueRouter()
+
+const $route = {
+  path: '/attendevent/:id',
+  params: {
+    id: "111"
+  }
+}
 
 describe('AttendEvent.vue', () => {
 	let store;
+	let state;
 	let actions;
 	  
 	beforeEach(() => {
+		state = {
+			upcomingEvents: [ mockUpcomingEvent() ],
+			attending: [ mockUpcomingEvent() ]
+		}
+
 		actions = {
 			getUpcomingEvents: jest.fn(),
-			addNewAttending: jest.fn(),
-			getAttending: jest.fn()
+			getAttending: jest.fn(),
+			addNewAttending: jest.fn()
 		};
 
 		store = new Vuex.Store({
-			state: {
-			  upcomingEvents: [ mockUpcomingEvent() ]
-			},
+			state,
 			actions
 		  });
-		});
+	});
 
-/*	it('should when confirm button clicked call on a method that dispatch two actions to Vuex store', async () => {	
+	it('should when confirm button clicked call on a method that dispatch two actions to Vuex store', async () => {	
 		// Arrange
 		const method = jest.spyOn(AttendEvent.methods, 'addNewAttending')
-		const wrapper = shallowMount(AttendEvent, {
+		const wrapper = mount(AttendEvent, {
 			localVue,
 			store,
-			router,
-			computed: {
-			event() {
-				let id = 111
-					return store.state.upcomingEvents.find((event) => event.id == id);
-				}
-			}
+			mocks: {
+				$route
+			},				
 		})
 
 		// Act
-		await wrapper.find('.add-attend-btn').trigger('click')
+		await wrapper.find('.attend-btn').trigger('click')
 		const actualOne = actions.addNewAttending
 		const actualTwo = actions.getAttending
 		
@@ -54,18 +58,14 @@ describe('AttendEvent.vue', () => {
 		expect(actualTwo).toHaveBeenCalled();	
 	})
 
-	it('should when mounted show correct event data from Vuex store via computed property', () => {
+	it('should check if computed property renders correct event data', () => {
 		// Arrange
 		const wrapper = shallowMount(AttendEvent, {
 			localVue,
 			store,
-			router,
-			computed: {
-			event() {
-				let id = 111
-				return store.state.upcomingEvents.find((event) => event.id == id);
-				}
-			}
+			mocks: {
+				$route
+			},
 		})
 			
 		const expected = mockUpcomingEvent()
@@ -76,24 +76,20 @@ describe('AttendEvent.vue', () => {
 		// Assert
 		expect(actual).toStrictEqual(expected);
 	});		
-*/
+
 	it('should when component mounted have go back button', () => {
 		// Arrange
 		const wrapper = shallowMount(AttendEvent, {
 			localVue,
-			router,
 			store,
-			computed: {
-			event() {
-				let id = 111
-				return store.state.upcomingEvents.find((event) => event.id == id);
-				}
-			}
+			mocks: {
+				$route
+			},
 		})
 		const expected = true
-		const button = wrapper.find('.goback-btn')
 
 		// Act
+		const button = wrapper.find('.goback-btn')
 		const actual = button.exists()
 					
 		// Assert

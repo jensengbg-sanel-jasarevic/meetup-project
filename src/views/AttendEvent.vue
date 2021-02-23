@@ -2,7 +2,7 @@
       <div  v-if="event" class="attend-event-box">
             <p class="attend-event-details">{{ event.date }}</p>
             <h1>{{ event.title }}</h1>
-            <img class="attend-event-image" v-bind:src="event.image" />
+            <img class="attend-event-image" :src="event.image" />
             <h2>Details</h2>
             <div class="attend-event-details">{{ event.details }} </div>
             <h2>Attendees ({{ event.attendees }})</h2>
