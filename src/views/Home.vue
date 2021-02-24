@@ -1,6 +1,6 @@
 <template>
   <div class="upcoming-events">
-    <Event v-for="event in events" :key="event.id" :event="event" />
+    <Event v-for="event in pullUpcomingEvents" :key="event.id" :event="event" />
   </div>
 </template>
 
@@ -18,7 +18,7 @@ export default {
   },
 
   computed: {
-    events() {
+    pullUpcomingEvents() {
       return this.$store.state.upcomingEvents;
     },
   }

@@ -1,9 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import UpcomingEvent from '../views/UpcomingEvent.vue'
+import SignUpEvent from '../views/SignUpEvent.vue'
 import ReviewEvent from '../views/ReviewEvent.vue'
-
 
 Vue.use(VueRouter)
 
@@ -14,9 +13,9 @@ const routes = [
     component: Home
   },
   {
-    path: '/upcomingevent/:id',
-    name: 'UpcomingEvent',
-    component: UpcomingEvent
+    path: '/signupevent/:id',
+    name: 'SignUpEvent',
+    component: SignUpEvent
   },
   {
     path: '/reviewevent/:id',

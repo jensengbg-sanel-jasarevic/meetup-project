@@ -1,14 +1,14 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
 import { mockUpcomingEvent } from "./mockData"
 import Vuex from 'vuex';
-import AttendBtn from '@/components/AttendBtn.vue'
+import SignUpBtn from '@/components/SignUpBtn.vue'
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
 // Router mock
 const $route = {
-	path: '/attendevent/:id',
+	path: '/signupevent/:id',
 	params: {
 	  id: "111"
 	}
@@ -16,7 +16,7 @@ const $route = {
 
 // It should when confirm button clicked disable the button
 
-describe('AttendBtn.vue', () => {
+describe('SignUpBtn.vue', () => {
 	let store;
 	let state;
 
@@ -33,17 +33,17 @@ describe('AttendBtn.vue', () => {
 
     it('should display button with correct text when component mounted', () => {
 		// Arrange
-		const wrapper = shallowMount(AttendBtn, {
+		const wrapper = shallowMount(SignUpBtn, {
 			localVue,
 			store,
 			mocks: {
 				$route
 			  }			
         })
-		const expected = "Register for event"
+		const expected = "Sign up for event"
 
 		// Act
-        const button = wrapper.find('.attend-btn')
+        const button = wrapper.find('.sign-btn')
         const actual = button.exists()
         const buttonText = button.text()
 			
@@ -54,7 +54,7 @@ describe('AttendBtn.vue', () => {
 
 	it('should not have element with class ".event-registered" if computed property is returning false', () => {
 		// Arrange
-		const wrapper = shallowMount(AttendBtn, {
+		const wrapper = shallowMount(SignUpBtn, {
 			localVue,
 			store,
 			mocks: {
@@ -68,28 +68,28 @@ describe('AttendBtn.vue', () => {
 		
 		// Act
 		const element = wrapper.find(".event-registered").exists()
-		const actual = wrapper.vm.checkIfAttending
+		const actual = wrapper.vm.checkSignedUp
 					
 		// Assert
 		expect(element).toBeFalsy()
 		expect(actual).toBeFalsy()
 	})
 
-    it('should have element with class ".event-registered" display text if computed property not return false', () => {
+    it('should have element with class ".signed-up" display text if computed property not return false', () => {
 		// Arrange
-		const wrapper = shallowMount(AttendBtn, {
+		const wrapper = shallowMount(SignUpBtn, {
             localVue,
             store,
 			mocks: {
 				$route
 			  },			           
 		})
-        const expected = "This event is registered!"
+        const expected = "Confirmation: Signed up for this event!"
         
 		// Act
-        const element = wrapper.find(".event-registered")
+        const element = wrapper.find(".signed-up")
 		const elementText = element.text()
-		const actual = wrapper.vm.checkIfAttending
+		const actual = wrapper.vm.checkSignedUp
 					
 		// Assert
         expect(element).toBeTruthy()

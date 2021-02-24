@@ -49,7 +49,7 @@ describe('PreviousEvents.vue', () => {
       const expected = [ mockPreviousEvent() ]
       
       // Act
-      const actual = wrapper.vm.preEvents
+      const actual = wrapper.vm.pullPreviousEvents
   
       // Assert
       expect(actual).toStrictEqual(expected);

@@ -1,6 +1,6 @@
 <template>
   <div class="previous-events">
-    <Event v-for="event in preEvents" :key="event.id" :event="event" />
+    <Event v-for="event in pullPreviousEvents" :key="event.id" :event="event" />
   </div>
 </template>
 
@@ -18,7 +18,7 @@ export default {
   },
 
   computed: {
-    preEvents() {
+    pullPreviousEvents() {
       return this.$store.state.previousEvents
     },
   }

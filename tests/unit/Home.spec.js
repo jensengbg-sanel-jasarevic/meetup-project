@@ -49,7 +49,7 @@ localVue.use(Vuex);
     const expected = [ mockUpcomingEvent() ]
     
     // Act
-    const actual = wrapper.vm.events
+    const actual = wrapper.vm.pullUpcomingEvents
 
     // Assert
     expect(actual).toStrictEqual(expected);
