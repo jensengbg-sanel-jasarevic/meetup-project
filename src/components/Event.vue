@@ -29,7 +29,7 @@ export default {
   
  methods: {
     routerToAttend(eventId) {
-      this.$router.push("/upcomingevent/" + eventId);
+      this.$router.push("/signupevent/" + eventId);
     },   
     routerToReviews(eventId) {
       this.$router.push("/reviewevent/" + eventId);
@@ -41,7 +41,8 @@ export default {
 
 <style scoped>
 .event-image {
+    border-radius: 10px;
     height: 200px;
-    width: 200px;
+    width: 300px;
 }
 </style>

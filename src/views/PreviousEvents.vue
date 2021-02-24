@@ -20,7 +20,7 @@ export default {
   computed: {
     pullPreviousEvents() {
       return this.$store.state.previousEvents
-    },
+    }
   }
 
 }
