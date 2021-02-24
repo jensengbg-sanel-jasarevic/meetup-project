@@ -1,5 +1,5 @@
 import { shallowMount, mount, createLocalVue } from '@vue/test-utils'
-import { mockUpcomingEvent } from "./mockData"
+import { mockEvent } from "./mockData"
 import Vuex from 'vuex';
 import Home from "@/views/Home.vue";
 
@@ -13,7 +13,7 @@ localVue.use(Vuex);
 
   beforeEach(() => {
     state = {
-      upcomingEvents: [ mockUpcomingEvent() ]
+      upcomingEvents: [ mockEvent() ]
     };
     actions = {
       getUpcomingEvents: jest.fn(),
@@ -46,7 +46,7 @@ localVue.use(Vuex);
       localVue,
       store
     })
-    const expected = [ mockUpcomingEvent() ]
+    const expected = [ mockEvent() ]
     
     // Act
     const actual = wrapper.vm.pullUpcomingEvents

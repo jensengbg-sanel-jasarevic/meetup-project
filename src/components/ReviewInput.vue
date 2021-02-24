@@ -2,13 +2,13 @@
   <div v-if="getAllReviews" class="all-reviews">
     <form @submit.prevent="addNewReview">
     <label for="review" :id="event.id">
-    <input v-model="inputReviewText" :id="event.id" type="text" class="review-input">
+    <input v-model="inputValue" :id="event.id" type="text" class="review-input">
     </label>
 
     <button type="submit">Post review</button>
     </form>
 
-    <EventReviews v-for="review in reviewsForSpecificEvent" :key="review.reviewId" :review="review" />
+    <EventReviews v-for="review in reviewsForSpecificEvent" :key="review.reviewID" :review="review" />
   </div>
 </template>
 
@@ -19,7 +19,7 @@ export default {
   
   data() {
     return {
-      inputReviewText: "",
+      inputValue: "",
     };
   },
 
@@ -36,19 +36,19 @@ export default {
       return this.$store.getters.getterReviews;
     },
     reviewsForSpecificEvent() {
-      return this.getAllReviews.filter((review) => review.eventId === this.event.id);
+      return this.getAllReviews.filter((review) => review.eventID === this.event.id);
     },
   },
 
   methods: {
     async addNewReview() {
       const newReview = {
-        reviewText: this.inputReviewText,
-        reviewId: Math.floor(Math.random() * 101),
-        eventId: this.event.id,
+        reviewText: this.inputValue,
+        reviewID: Math.floor(Math.random() * 101),
+        eventID: this.event.id,
       };      
       this.$store.dispatch("addNewReview", newReview);
-      this.inputReviewText = "";    
+      this.inputValue = "";    
       },
     },
 

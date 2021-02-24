@@ -28,11 +28,11 @@ export default {
   },
   
  methods: {
-    routerToAttend(eventId) {
-      this.$router.push("/signupevent/" + eventId);
+    routerToAttend(eventID) {
+      this.$router.push("/signupevent/" + eventID);
     },   
-    routerToReviews(eventId) {
-      this.$router.push("/reviewevent/" + eventId);
+    routerToReviews(eventID) {
+      this.$router.push("/reviewevent/" + eventID);
     },
   }
   

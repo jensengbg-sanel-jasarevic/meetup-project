@@ -34,8 +34,8 @@ const upcoming =  [
     return setLocalStorageData;
   }
 
-  function getLocalStorageAttending() {
-    let getLocalStorageData = localStorage.getItem("attending");
+  function getLocalStorageSignedUp() {
+    let getLocalStorageData = localStorage.getItem("signed-up");
     if (getLocalStorageData) {
       return JSON.parse(getLocalStorageData);
     }
@@ -48,4 +48,4 @@ const upcoming =  [
     }
   }
 
-  export { setUpcomingEvents, setPreviousEvents, getLocalStorageAttending, getLocalStorageReviews };
+  export { setUpcomingEvents, setPreviousEvents, getLocalStorageSignedUp, getLocalStorageReviews };

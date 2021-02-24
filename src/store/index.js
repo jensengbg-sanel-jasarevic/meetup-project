@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { setUpcomingEvents, setPreviousEvents, getLocalStorageReviews, getLocalStorageAttending } from "@/localstorage_data/localstorageData.js";
+import { setUpcomingEvents, setPreviousEvents, getLocalStorageReviews, getLocalStorageSignedUp } from "@/localstorage_data/localstorageData.js";
 
 Vue.use(Vuex)
 
@@ -9,7 +9,7 @@ export default new Vuex.Store({
     upcomingEvents: [], 
     previousEvents: [],
     reviews: [],
-    attending: []
+    signedUp: []
   },
   mutations: {
     pushUpcomingEvents(state, data) {
@@ -21,17 +21,17 @@ export default new Vuex.Store({
     pushReviews(state, data) {
       state.reviews = data;
     },    
-    pushAttending(state, data) {
+    pushSignedUpEvents(state, data) {
       state.attending = data;
     },
     addToReviews(state, newReview) {
       state.reviews.push(newReview);
       localStorage.setItem("reviews", JSON.stringify(state.reviews));
     },
-    addToAttending(state, newAttending) {
-      if (!state.attending.find((event) => event.id === newAttending.id)) {
-      state.attending.push(newAttending);
-      localStorage.setItem("attending", JSON.stringify(state.attending));
+    addToSignedUp(state, newSignUp) {
+      if (!state.signedUp.find((event) => event.id === newSignUp.id)) {
+      state.signedUp.push(newSignUp);
+      localStorage.setItem("signed-up", JSON.stringify(state.signedUp));
       }
     },    
 
@@ -70,10 +70,10 @@ export default new Vuex.Store({
       }
     }, 
 
-    async getAttending(ctx) {
-      let localStorageAttending = await getLocalStorageAttending();
-      if (localStorageAttending) {
-        ctx.commit("pushAttending", localStorageAttending);
+    async getSignedUpEvents(ctx) {
+      let localStorageSignedUpEvents = await getLocalStorageSignedUp();
+      if (localStorageSignedUpEvents) {
+        ctx.commit("pushSignedUpEvents", localStorageSignedUpEvents);
       }
     },
 
@@ -81,8 +81,8 @@ export default new Vuex.Store({
       context.commit("addToReviews", newReview);
     },
 
-    addNewAttending(context, newAttending) {
-      context.commit("addToAttending", newAttending);
+    addNewSignUpEvent(context, newSignUp) {
+      context.commit("addToSignedUp", newSignUp);
     },
           
   },

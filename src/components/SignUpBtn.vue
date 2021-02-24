@@ -12,7 +12,7 @@ export default {
   computed: {
     checkSignedUp() {
       let eventID = this.$route.params.id;
-      let result = this.$store.state.attending.find((event) => event.id == eventID)
+      let result = this.$store.state.signedUp.find((event) => event.id == eventID)
         return result
     }
   },

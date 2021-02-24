@@ -1,5 +1,5 @@
 import { shallowMount, mount, createLocalVue } from "@vue/test-utils";
-import { mockUpcomingEvent } from "./mockData"
+import { mockEvent } from "./mockData"
 import Vuex from 'vuex';
 import SignUpEvent from "@/views/SignUpEvent.vue";
 
@@ -20,14 +20,14 @@ describe('SignUpEvent.vue', () => {
 	  
 	beforeEach(() => {
 		state = {
-			upcomingEvents: [ mockUpcomingEvent() ],
-			attending: [ mockUpcomingEvent() ]
+			upcomingEvents: [ mockEvent() ],
+			signedUp: [ mockEvent() ]
 		}
 
 		actions = {
 			getUpcomingEvents: jest.fn(),
-			getAttending: jest.fn(),
-			addNewAttending: jest.fn()
+			getSignedUpEvents: jest.fn(),
+			addNewSignUpEvent: jest.fn()
 		};
 
 		store = new Vuex.Store({
@@ -38,7 +38,7 @@ describe('SignUpEvent.vue', () => {
 
 	it('should when button on child component clicked call a method that dispatch action to Vuex store', async () => {	
 		// Arrange
-		const btnClickMethod = jest.spyOn(SignUpEvent.methods, 'addNewAttending')
+		const btnClickMethod = jest.spyOn(SignUpEvent.methods, 'addNewSignUp')
 		const wrapper = mount(SignUpEvent, {
 			localVue,
 			store,
@@ -49,7 +49,7 @@ describe('SignUpEvent.vue', () => {
 
 		// Act
 		await wrapper.find('.sign-btn').trigger('click')
-		const actual = actions.addNewAttending
+		const actual = actions.addNewSignUpEvent
 		
 		// Assert
 		expect(btnClickMethod).toHaveBeenCalled()
@@ -65,7 +65,7 @@ describe('SignUpEvent.vue', () => {
 				$route
 			},
 		})	
-		const expected = mockUpcomingEvent()
+		const expected = mockEvent()
 			
 		// Act
 		const actual = wrapper.vm.event

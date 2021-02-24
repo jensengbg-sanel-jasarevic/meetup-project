@@ -1,5 +1,5 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
-import { mockUpcomingEvent } from "./mockData"
+import { mockEvent } from "./mockData"
 import Vuex from 'vuex';
 import SignUpBtn from '@/components/SignUpBtn.vue'
 
@@ -22,7 +22,7 @@ describe('SignUpBtn.vue', () => {
 
 	beforeEach(() => {
 		state = {
-			attending: [ mockUpcomingEvent() ]
+			signedUp: [ mockEvent() ]
 		};
 
 		store = new Vuex.Store({

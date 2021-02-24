@@ -8,7 +8,7 @@
             <h2 class="signup-event-attendees">Attendees ({{ event.attendees }})</h2>
 
             <button class="goback-btn" @click="$router.go(-1)">Back</button>
-            <SignUpBtn @click.native="addNewAttending" />
+            <SignUpBtn @click.native="addNewSignUp" />
         </div>
 </template>
 
@@ -24,7 +24,7 @@ export default {
   // Lifecycle hook needed if page refresh
   created() {
     this.$store.dispatch("getUpcomingEvents");
-    this.$store.dispatch("getAttending");  
+    this.$store.dispatch("getSignedUpEvents");  
   },
 
   computed: {
@@ -35,8 +35,8 @@ export default {
   },
   
   methods: {
-    addNewAttending() {
-      this.$store.dispatch("addNewAttending", this.event);
+    addNewSignUp() {
+      this.$store.dispatch("addNewSignUpEvent", this.event);
     },
   }
 

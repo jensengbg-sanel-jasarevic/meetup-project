@@ -1,5 +1,5 @@
 import { shallowMount, mount, createLocalVue } from '@vue/test-utils'
-import { mockEventObj, mockPreviousEvent, mockReview } from "./mockData"
+import { mockPreviousEvent, mockReview } from "./mockData"
 import Vuex from 'vuex'
 import ReviewInput from "@/components/ReviewInput.vue";
 
@@ -15,16 +15,19 @@ localVue.use(Vuex)
 
 describe('ReviewInput.vue', () => {
     let store;
+    let state;
     let actions;
     let getters;
-    let reviews = [ mockReview() ]
 
     beforeEach(() => {
+      state = {
+        reviews: [ mockReview() ]
+      },      
       actions = {
         addNewReview: jest.fn(),
       },
       getters = {
-        getterReviews: () => reviews
+        getterReviews: () => state.reviews
       }      
 
       store = new Vuex.Store({
@@ -38,14 +41,16 @@ describe('ReviewInput.vue', () => {
       const wrapper = shallowMount(ReviewInput, { 
         localVue,
         store,
-        propsData: mockEventObj()
+        propsData: {
+          event: mockPreviousEvent()
+        }        
       })
       const expected = "Input example review text"
 
       // Act
       const input = wrapper.find('.review-input')
       await input.setValue('Input example review text')
-      const actual = wrapper.vm.inputReviewText
+      const actual = wrapper.vm.inputValue
       
       // Assert
       expect(actual).toBe(expected)
@@ -56,7 +61,9 @@ describe('ReviewInput.vue', () => {
       const wrapper = shallowMount(ReviewInput, { 
         localVue,
         store,
-        propsData: mockEventObj()
+        propsData: {
+          event: mockPreviousEvent()
+        }        
       })
       const expected = getters.getterReviews()
 
@@ -72,8 +79,10 @@ describe('ReviewInput.vue', () => {
         const wrapper = shallowMount(ReviewInput, { 
           localVue,
           store,
-          propsData: mockEventObj()
-        }) 
+          propsData: {
+            event: mockPreviousEvent()
+          }        
+        })
         const submitButton = wrapper.find('button')
 
         // Act
@@ -89,7 +98,9 @@ describe('ReviewInput.vue', () => {
       const wrapper = mount(ReviewInput , {
         localVue,
         store,
-        propsData: mockEventObj(),          
+        propsData: {
+          event: mockPreviousEvent()
+        }        
       })
       const expected = true
       

@@ -1,5 +1,5 @@
   import { shallowMount, createLocalVue } from '@vue/test-utils'
-  import { mockEventObj, mockPreviousEvent, mockUpcomingEvent } from "./mockData"
+  import { mockEvent, mockPreviousEvent } from "./mockData"
   import VueRouter from 'vue-router'
   import Event from '@/components/Event.vue'
 
@@ -12,7 +12,9 @@
       it("should have element with class '.event-box' if component get data from props", () => {
       // Arrange
       const wrapper = shallowMount(Event, {
-        propsData: mockEventObj()
+        propsData: {
+          event: mockEvent()
+        }        
       })
       const expected = true
           
@@ -42,8 +44,10 @@
     it("should if element with class '.event-box' exist contain element with class '.event-info'", () => {
       // Arrange
       const wrapper = shallowMount(Event, {
-          propsData: mockEventObj()
-      })  
+        propsData: {
+          event: mockEvent()
+        }        
+      })
       const expected = true
    
       // Act
@@ -60,9 +64,9 @@
       // Arrange
       const wrapper = shallowMount(Event, {
         propsData: {
-          event: mockUpcomingEvent()
-        }
-      })  
+          event: mockEvent()
+        }        
+      }) 
       const expected = true
    
       // Act       
@@ -93,9 +97,11 @@
       const wrapper = shallowMount(Event, {
         localVue,
         router,
-        propsData: mockEventObj()
-      });
-      const expected = "/reviewevent/222"
+        propsData: {
+          event: mockPreviousEvent()
+        }
+      }) 
+      const expected = "/reviewevent/555"
 
       // Act
       const button = wrapper.find('.previous-event-btn')
@@ -108,12 +114,14 @@
     it("should when component mounted display the correct data from props", () => {
       // Arrange
       const wrapper = shallowMount(Event, {
-        propsData: mockEventObj()
-      })  
+        propsData: {
+          event: mockEvent()
+        }        
+      }) 
       const expectedImage = "https://vuejs.org/images/logo.png";
-      const expectedEvent = "Tech event";
-      const expectedCity = "Malmö";
-      const expectedDate = "Sun, Feb 10, 4:30 PM";
+      const expectedEvent = "Language & culture event";
+      const expectedCity = "Göteborg";
+      const expectedDate = "Wed, Mar 3, 12:00 PM";
 
       // Act       
       const actualImage = wrapper.find(".event-image")

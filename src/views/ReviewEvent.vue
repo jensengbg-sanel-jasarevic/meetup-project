@@ -30,8 +30,8 @@ export default {
 
   computed: {
     event() {
-      let id = this.$route.params.id;
-        return this.$store.state.previousEvents.find((event) => event.id == id);
+      let eventID = this.$route.params.id;
+        return this.$store.state.previousEvents.find((event) => event.id == eventID);
     }
   }, 
   
