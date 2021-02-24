@@ -14,7 +14,6 @@ describe('PreviousEvents.vue', () => {
     beforeEach(() => {
       actions = {
         getPreviousEvents: jest.fn(),
-        getReviews: jest.fn()
       };
       state = {
         previousEvents: [ mockPreviousEvent() ]
@@ -27,7 +26,7 @@ describe('PreviousEvents.vue', () => {
       
     });
   
-    it('should when created dispatch two actions to Vuex store', () => {
+    it('should when created dispatch action to Vuex store', () => {
       // Arrange
       shallowMount(PreviousEvents, {
         localVue,
@@ -35,12 +34,10 @@ describe('PreviousEvents.vue', () => {
       });
   
       // Act
-      const actualOne = actions.getPreviousEvents
-      const actualTwo = actions.getReviews
+      const actual = actions.getPreviousEvents
   
       // Assert
-      expect(actualOne).toHaveBeenCalled();
-      expect(actualTwo).toHaveBeenCalled();
+      expect(actual).toHaveBeenCalled();
     });
   
     it('should when mounted render data from Vuex store state via computed property', () => {

@@ -36,9 +36,9 @@ describe('AttendEvent.vue', () => {
 		  });
 	});
 
-	it('should when confirm button clicked call on a method that dispatch two actions to Vuex store', async () => {	
+	it('should when button on child component clicked call a method that dispatch action to Vuex store', async () => {	
 		// Arrange
-		const method = jest.spyOn(AttendEvent.methods, 'addNewAttending')
+		const buttonMethod = jest.spyOn(AttendEvent.methods, 'addNewAttending')
 		const wrapper = mount(AttendEvent, {
 			localVue,
 			store,
@@ -49,16 +49,14 @@ describe('AttendEvent.vue', () => {
 
 		// Act
 		await wrapper.find('.attend-btn').trigger('click')
-		const actualOne = actions.addNewAttending
-		const actualTwo = actions.getAttending
+		const actual = actions.addNewAttending
 		
 		// Assert
-		expect(method).toHaveBeenCalled()
-		expect(actualOne).toHaveBeenCalled();
-		expect(actualTwo).toHaveBeenCalled();	
+		expect(buttonMethod).toHaveBeenCalled()
+		expect(actual).toHaveBeenCalled();
 	})
 
-	it('should check if computed property renders correct event data', () => {
+	it('should check if computed property renders correct data', () => {
 		// Arrange
 		const wrapper = shallowMount(AttendEvent, {
 			localVue,
@@ -66,8 +64,7 @@ describe('AttendEvent.vue', () => {
 			mocks: {
 				$route
 			},
-		})
-			
+		})	
 		const expected = mockUpcomingEvent()
 			
 		// Act
@@ -77,7 +74,7 @@ describe('AttendEvent.vue', () => {
 		expect(actual).toStrictEqual(expected);
 	});		
 
-	it('should when component mounted have go back button', () => {
+	it('should when component mounted have button element with class "goback-btn"', () => {
 		// Arrange
 		const wrapper = shallowMount(AttendEvent, {
 			localVue,

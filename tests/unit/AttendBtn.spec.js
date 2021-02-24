@@ -43,16 +43,16 @@ describe('AttendBtn.vue', () => {
 		const expected = "Register for event"
 
 		// Act
-        const buttonElement = wrapper.find('.attend-btn')
-        const actual = buttonElement.exists()
-        const actualText = buttonElement.text()
+        const button = wrapper.find('.attend-btn')
+        const actual = button.exists()
+        const buttonText = button.text()
 			
 		// Assert
-		expect(actual).toBeTruthy
-        expect(actualText).toBe(expected)
+		expect(actual).toBeTruthy()
+        expect(buttonText).toBe(expected)
 	})    
 
-	it('should not have "p" tag if computed property is returning false', () => {
+	it('should not have element with class ".event-registered" if computed property is returning false', () => {
 		// Arrange
 		const wrapper = shallowMount(AttendBtn, {
 			localVue,
@@ -67,15 +67,15 @@ describe('AttendBtn.vue', () => {
 		})
 		
 		// Act
-		const element = wrapper.find("p").exists()
+		const element = wrapper.find(".event-registered").exists()
 		const actual = wrapper.vm.checkIfAttending
 					
 		// Assert
-		expect(element).not.toBeTruthy
-		expect(actual).not.toBeTruthy
+		expect(element).toBeFalsy()
+		expect(actual).toBeFalsy()
 	})
 
-    it('should have "p" tag that display text if computed property not return false', () => {
+    it('should have element with class ".event-registered" display text if computed property not return false', () => {
 		// Arrange
 		const wrapper = shallowMount(AttendBtn, {
             localVue,
@@ -87,7 +87,7 @@ describe('AttendBtn.vue', () => {
         const expected = "This event is registered!"
         
 		// Act
-        const element = wrapper.find("p")
+        const element = wrapper.find(".event-registered")
 		const elementText = element.text()
 		const actual = wrapper.vm.checkIfAttending
 					

@@ -83,7 +83,7 @@ describe('ReviewEvent.vue', () => {
     const expected = true
     
     // Act
-    const buttonElement = wrapper.find('.back-btn')
+    const buttonElement = wrapper.find('.goback-btn')
     const actual = buttonElement.exists()
 
     // Assert

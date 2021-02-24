@@ -1,11 +1,11 @@
 <template>
-      <div  v-if="event" class="attend-event-box">
+      <div v-if="event" class="attend-event-box">
             <p class="attend-event-details">{{ event.date }}</p>
-            <h1>{{ event.title }}</h1>
+            <h1 class="attent-event-title">{{ event.title }}</h1>
             <img class="attend-event-image" :src="event.image" />
             <h2>Details</h2>
             <div class="attend-event-details">{{ event.details }} </div>
-            <h2>Attendees ({{ event.attendees }})</h2>
+            <h2 class="attend-event-attendees">Attendees ({{ event.attendees }})</h2>
 
             <button class="goback-btn" @click="$router.go(-1)">Back</button>
             <AttendBtn @click.native="addNewAttending" />
@@ -14,10 +14,9 @@
 
 <script>
 import AttendBtn from '@/components/AttendBtn.vue'
-
 export default {
   name: 'AttendEvent',
-
+  
   components: {
       AttendBtn
   },
@@ -35,11 +34,9 @@ export default {
     },
   },
   
-   methods: {
+  methods: {
     addNewAttending() {
-      // Add attending, then get latest attending data to update site
       this.$store.dispatch("addNewAttending", this.event );
-      this.$store.dispatch("getAttending")
     },
   }
 

@@ -6,7 +6,6 @@
 
 <script>
 import Event from '@/components/Event.vue'
-
 export default {
   name: 'PreviousEvents',
 
@@ -16,7 +15,6 @@ export default {
 
   created() {
     this.$store.dispatch("getPreviousEvents");
-    this.$store.dispatch("getReviews");
   },
 
   computed: {

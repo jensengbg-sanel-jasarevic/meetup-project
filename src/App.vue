@@ -4,7 +4,7 @@
       <router-link to="/">Upcoming events</router-link> |
       <router-link to="/previousevents">Previous events</router-link>
     </div>
-    <router-view />
+      <router-view />
   </div>
 </template>
 

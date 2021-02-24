@@ -1,31 +1,30 @@
 <template>
       <div v-if="event" class="event-box" >
 
-          <div class="info">
-          <img class="e-image" :src="event.image" alt="">
-          <p class="e-date">{{ event.date }}</p>
-          <h4 class="e-title">{{ event.title }}</h4>
-          <p class="e-city">{{ event.city }}</p>
+          <div class="event-info">
+          <img class="event-image" :src="event.image" alt="">
+          <p class="event-date">{{ event.date }}</p>
+          <h4 class="event-title">{{ event.title }}</h4>
+          <p class="event-city">{{ event.city }}</p>
           </div>
 
          <div v-if="event.upcoming">
-          <button @click="routerToAttend(event.id)" class="attend-button">More info</button>
+          <button @click="routerToAttend(event.id)" class="upcoming-event-btn">More info</button>
          </div>
          
          <div v-if="!event.upcoming">
-          <button @click="routerToReviews(event.id)" class="review-button">Reviews</button>
+          <button @click="routerToReviews(event.id)" class="previous-event-btn">Reviews</button>
          </div>
 
      </div>
 </template>
 
 <script>
-
 export default {
   name: 'Event',
 
   props: {
-    event: Object,
+    event: Object
   },
   
  methods: {
@@ -36,11 +35,12 @@ export default {
       this.$router.push("/reviewevent/" + eventId);
     },
   }
+  
 }
 </script>
 
 <style scoped>
-.e-image {
+.event-image {
     height: 200px;
     width: 200px;
 }

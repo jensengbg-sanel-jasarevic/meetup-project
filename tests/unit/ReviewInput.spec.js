@@ -41,18 +41,18 @@ describe('ReviewInput.vue', () => {
         store,
         propsData: mockEventObj()
       })
-      const expected = "My review text"
+      const expected = "Example review text"
 
       // Act
       const reviewInput = wrapper.find('.review-input')
-      await reviewInput.setValue('My review text')
+      await reviewInput.setValue('Example review text')
       const actual = wrapper.vm.inputReviewText
       
       // Assert
       expect(actual).toBe(expected)
   })
 
-    it('should when mounted render correct data from Vuex store getters', () => {
+    it('should render reviews data from Vuex store getters via computed property', () => {
       // Arrange
       const wrapper = shallowMount(ReviewInput, { 
         localVue,
@@ -68,7 +68,7 @@ describe('ReviewInput.vue', () => {
       expect(actual).toBe(expected)
     })
   
-    it('should when submit the button dispatch action "addNewReview" to Vuex store', async () => {
+    it('should when submit the button dispatch action to Vuex store', async () => {
         // Arrange
         const wrapper = shallowMount(ReviewInput, { 
           localVue,

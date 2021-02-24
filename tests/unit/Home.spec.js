@@ -12,12 +12,11 @@ localVue.use(Vuex);
   let actions;
 
   beforeEach(() => {
-    actions = {
-      getUpcomingEvents: jest.fn(),
-      getAttending: jest.fn()
-    };
     state = {
       upcomingEvents: [ mockUpcomingEvent() ]
+    };
+    actions = {
+      getUpcomingEvents: jest.fn(),
     };
     
     store = new Vuex.Store({
@@ -27,7 +26,7 @@ localVue.use(Vuex);
     
   });
 
-  it('should when mounted dispatch two actions to Vuex store', () => {
+  it('should when mounted dispatch action to Vuex store', () => {
     // Arrange
     shallowMount(Home, {
       localVue,
@@ -35,12 +34,10 @@ localVue.use(Vuex);
     });
 
     // Act
-    const actualOne = actions.getUpcomingEvents
-    const actualTwo = actions.getAttending
+    const actual = actions.getUpcomingEvents
 
     // Assert
-    expect(actualOne).toHaveBeenCalled();
-    expect(actualTwo).toHaveBeenCalled();
+    expect(actual).toHaveBeenCalled();
   });
 
   it('should when mounted render data from Vuex store state via computed property', () => {

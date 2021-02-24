@@ -14,7 +14,6 @@
 
 <script>
 import EventReviews from '@/components/EventReviews.vue'
-
 export default {
   name: 'ReviewInput',
   
@@ -36,7 +35,6 @@ export default {
     getAllReviews() {
       return this.$store.getters.getterReviews;
     },
-    
     reviewsForSpecificEvent() {
       return this.getAllReviews.filter((review) => review.eventId === this.event.id);
     },

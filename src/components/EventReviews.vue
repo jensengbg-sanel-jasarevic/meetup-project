@@ -1,11 +1,10 @@
 <template>
-  <div class="">
-      <p>{{review.reviewText}}</p>
+  <div class="event-reviews-box">
+      <p class="review-text">{{review.reviewText}}</p>
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'EventReviews',
 

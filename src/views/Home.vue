@@ -6,7 +6,6 @@
 
 <script>
 import Event from '@/components/Event.vue'
-
 export default {
   name: 'Home',
   
@@ -16,14 +15,12 @@ export default {
 
   created() {
     this.$store.dispatch("getUpcomingEvents");
-    this.$store.dispatch("getAttending")
   },
 
   computed: {
     events() {
       return this.$store.state.upcomingEvents;
     },
-
   }
  
 }

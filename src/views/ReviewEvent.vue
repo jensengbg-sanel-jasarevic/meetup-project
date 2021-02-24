@@ -3,13 +3,12 @@
       <!--<div class="review-event-date">{{ event.date }} </div>-->
        
       <ReviewInput :event="event" />
-      <button class="back-btn" @click="$router.go(-1)">Back</button>
+      <button class="goback-btn" @click="$router.go(-1)">Back</button>
   </div>
 </template>
 
 <script>
 import ReviewInput from '@/components/ReviewInput.vue'
-
 export default {
   name: 'ReviewEvent',
 

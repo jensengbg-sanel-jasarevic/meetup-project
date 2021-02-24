@@ -4,7 +4,7 @@ import EventReviews from "@/components/EventReviews.vue";
 
  describe('EventReviews.vue', () => {
 
-    it("should when mounted display the review text from props", () => {
+    it("should when mounted display the review text data from props", () => {
      // Arrange
       const wrapper = shallowMount(EventReviews, { 
         propsData: {
@@ -14,10 +14,10 @@ import EventReviews from "@/components/EventReviews.vue";
       const expected = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
 
       // Act
-      const reviewText = wrapper.find('p').text()
+      const actual = wrapper.find('.review-text').text()
 
       // Assert
-      expect(reviewText).toBe(expected);
+      expect(actual).toBe(expected);
     });
     
 })
