@@ -1,19 +1,19 @@
 import { shallowMount, mount, createLocalVue } from "@vue/test-utils";
 import { mockUpcomingEvent } from "./mockData"
 import Vuex from 'vuex';
-import AttendEvent from "@/views/AttendEvent.vue";
+import UpcomingEvent from "@/views/UpcomingEvent.vue";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
 const $route = {
-  path: '/attendevent/:id',
+  path: '/upcomingevent/:id',
   params: {
     id: "111"
   }
 }
 
-describe('AttendEvent.vue', () => {
+describe('UpcomingEvent.vue', () => {
 	let store;
 	let state;
 	let actions;
@@ -38,8 +38,8 @@ describe('AttendEvent.vue', () => {
 
 	it('should when button on child component clicked call a method that dispatch action to Vuex store', async () => {	
 		// Arrange
-		const buttonMethod = jest.spyOn(AttendEvent.methods, 'addNewAttending')
-		const wrapper = mount(AttendEvent, {
+		const buttonMethod = jest.spyOn(UpcomingEvent.methods, 'addNewAttending')
+		const wrapper = mount(UpcomingEvent, {
 			localVue,
 			store,
 			mocks: {
@@ -58,7 +58,7 @@ describe('AttendEvent.vue', () => {
 
 	it('should check if computed property renders correct data', () => {
 		// Arrange
-		const wrapper = shallowMount(AttendEvent, {
+		const wrapper = shallowMount(UpcomingEvent, {
 			localVue,
 			store,
 			mocks: {
@@ -76,7 +76,7 @@ describe('AttendEvent.vue', () => {
 
 	it('should when component mounted have button element with class "goback-btn"', () => {
 		// Arrange
-		const wrapper = shallowMount(AttendEvent, {
+		const wrapper = shallowMount(UpcomingEvent, {
 			localVue,
 			store,
 			mocks: {

@@ -29,7 +29,7 @@ export default {
   
  methods: {
     routerToAttend(eventId) {
-      this.$router.push("/attendevent/" + eventId);
+      this.$router.push("/upcomingevent/" + eventId);
     },   
     routerToReviews(eventId) {
       this.$router.push("/reviewevent/" + eventId);

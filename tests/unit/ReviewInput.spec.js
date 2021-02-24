@@ -20,13 +20,12 @@ describe('ReviewInput.vue', () => {
     let reviews = [ mockReview() ]
 
     beforeEach(() => {
-      getters = {
-        getterReviews: () => reviews
-      }
-
       actions = {
         addNewReview: jest.fn(),
-      }
+      },
+      getters = {
+        getterReviews: () => reviews
+      }      
 
       store = new Vuex.Store({
         actions,
@@ -34,18 +33,18 @@ describe('ReviewInput.vue', () => {
       })
     })
 
-    it('should check if input field store correct review value in components data', async () => {
+    it('should check if input field store correct value in components data property', async () => {
       // Arrange
       const wrapper = shallowMount(ReviewInput, { 
         localVue,
         store,
         propsData: mockEventObj()
       })
-      const expected = "Example review text"
+      const expected = "Input example review text"
 
       // Act
-      const reviewInput = wrapper.find('.review-input')
-      await reviewInput.setValue('Example review text')
+      const input = wrapper.find('.review-input')
+      await input.setValue('Input example review text')
       const actual = wrapper.vm.inputReviewText
       
       // Assert
