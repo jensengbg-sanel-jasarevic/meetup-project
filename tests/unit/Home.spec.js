@@ -40,7 +40,7 @@ localVue.use(Vuex);
     expect(actual).toHaveBeenCalled();
   });
 
-  it('should when mounted render data from Vuex store state via computed property', () => {
+  it('should when mounted render correct data from Vuex store state via computed property', () => {
     // Arrange
     const wrapper = shallowMount(Home, {
       localVue,
@@ -55,7 +55,7 @@ localVue.use(Vuex);
     expect(actual).toStrictEqual(expected);
   });
 
-    it('should when component mounted have child component with name "Event"', () => {
+    it('should when mounted have child component with name "Event"', () => {
     // Arrange
     const wrapper = mount(Home, {
       localVue,

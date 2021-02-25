@@ -1,11 +1,11 @@
 <template>
       <div>
-        <div v-if="checkSignedUp" class="signed-up-event">
+        <div v-if="event" class="signed-up-event">
           <span>Event signed up!</span> 
         </div>
 
-        <div class="sign-event">
-          <button class="sign-btn">Sign up for event</button>
+        <div v-else class="sign-event">
+          <button @click="addNewSignUp" class="sign-btn">Sign up for event</button>
         </div>            
       </div>
 </template>
@@ -13,15 +13,20 @@
 <script>
 export default {
   name: 'SignUpBtn',
-
+  
   computed: {
-    checkSignedUp() {
+    event() {
       let eventID = this.$route.params.id;
-      let result = this.$store.state.signedUp.find((event) => event.id == eventID)
-        return result
+      let isRegistered = this.$store.state.signedUp.find((event) => event.id == eventID)
+        return isRegistered
     }
   },
   
+  methods: {
+    addNewSignUp() {
+      this.$store.dispatch("addNewSignUpEvent", this.event);
+    },
+  }
 }
 </script>
 

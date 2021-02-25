@@ -40,7 +40,7 @@ describe('ReviewEvent.vue', () => {
 
   });
 
-  it('should check if computed property renders correct event data', () => {
+  it('should check if computed property renders correct data', () => {
     // Arrange
     const wrapper = shallowMount(ReviewEvent, {
       localVue,
@@ -58,7 +58,7 @@ describe('ReviewEvent.vue', () => {
     expect(actual).toStrictEqual(expected);
   })
 
-  it('should when created dispatch two actions to Vuex store', () => {
+  it('should when mounted dispatch two actions to Vuex store', () => {
     // Arrange
     shallowMount(ReviewEvent, {
       localVue,
@@ -77,7 +77,7 @@ describe('ReviewEvent.vue', () => {
     expect(actualTwo).toHaveBeenCalled();
   });
 
-  it('should have a button with class name ".back-btn"', () => {
+  it('should have a button with class name ".goback-btn"', () => {
     // Arrange
     const wrapper = shallowMount(ReviewEvent, {
       localVue,
@@ -89,14 +89,14 @@ describe('ReviewEvent.vue', () => {
     const expected = true
     
     // Act
-    const buttonElement = wrapper.find('.goback-btn')
-    const actual = buttonElement.exists()
+    const button = wrapper.find('.goback-btn')
+    const actual = button.exists()
 
     // Assert
     expect(actual).toBe(expected);
   })
 
-  it('should when component is mounted have a component with name "ReviewInput"', () => {
+  it('should when mounted have component with name "ReviewInput"', () => {
     // Arrange
     const wrapper = mount(ReviewEvent, {
       localVue,
@@ -115,5 +115,38 @@ describe('ReviewEvent.vue', () => {
     // Assert
     expect(actual.exists()).toBe(expected);
   });
+
+  it("should when mounted display the correct data in template from computed property", () => {
+    // Arrange
+    const wrapper = shallowMount(ReviewEvent, {
+      localVue,
+      store,
+      mocks: {
+        $route
+      },            
+    });
+    const expectedDate = wrapper.vm.event.date
+    const expectedTitle = wrapper.vm.event.title
+    const expectedImage = wrapper.vm.event.image
+    const expectedCategory = wrapper.vm.event.category
+    const expectedDetails = wrapper.vm.event.details
+    const expectedAttended = `Attended (${wrapper.vm.event.attendees})`
+
+    // Act       
+    const actualDate = wrapper.find(".review-event-date").text()
+    const actualTitle = wrapper.find(".review-event-title").text()
+    const actualImage = wrapper.find(".review-event-image")
+    const actualCategory = wrapper.find(".review-event-category").text()
+    const actualDetails = wrapper.find(".review-event-details").text()
+    const actualAttended = wrapper.find(".review-event-attendees").text()
+
+    // Assert
+    expect(actualDate).toBe(expectedDate)
+    expect(actualTitle).toBe(expectedTitle)
+    expect(actualImage.attributes("src")).toBe(expectedImage)
+    expect(actualCategory).toBe(expectedCategory)
+    expect(actualDetails).toBe(expectedDetails)
+    expect(actualAttended).toBe(expectedAttended)
+  })
 
 })
