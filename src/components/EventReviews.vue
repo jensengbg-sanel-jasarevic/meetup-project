@@ -1,6 +1,6 @@
 <template>
-  <div class="event-reviews-box">
-      <p class="review-text">{{review.reviewText}}</p>
+  <div v-if="review">
+      <p>{{ review.reviewText }}</p>
   </div>
 </template>
 

@@ -7,7 +7,7 @@
             <div class="signup-event-details">{{ event.details }}</div>
             <h2 class="signup-event-attendees">Attendees ({{ event.attendees }})</h2>
             
-            <SignUpBtn />
+            <SignUpBtn :event="event"/>
             <button class="goback-btn" @click="$router.go(-1)">Back to events</button>
         </div>
 </template>

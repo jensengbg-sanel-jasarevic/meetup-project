@@ -1,6 +1,6 @@
 <template>
   <div> 
-    <h1>Events</h1>
+    <h1>Sign up for events</h1>
     <div class="upcoming-events">
     <Event v-for="event in pullUpcomingEvents" :key="event.id" :event="event"/>
     </div>

@@ -7,7 +7,7 @@
       <router-link to="/previousevents">PREVIOUS EVENTS</router-link>
     </div>
       <router-view />
-    <footer><p>© 2021 Meetup</p>
+    <footer><p>2021 Meetup</p>
    </footer> 
   </div>
 </template>

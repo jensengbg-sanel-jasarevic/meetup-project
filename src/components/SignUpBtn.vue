@@ -1,6 +1,6 @@
 <template>
       <div>
-        <div v-if="event" class="signed-up-event">
+        <div v-if="checkIfSignedUp" class="signed-up-event">
           <span>Event signed up!</span> 
         </div>
 
@@ -14,12 +14,16 @@
 export default {
   name: 'SignUpBtn',
   
+  props: {
+    event: Object
+  },
+
   computed: {
-    event() {
+    checkIfSignedUp() {
       let eventID = this.$route.params.id;
-      let isRegistered = this.$store.state.signedUp.find((event) => event.id == eventID)
-        return isRegistered
-    }
+      let signedUp = this.$store.state.signedUp.find((event) => event.id == eventID)
+        return signedUp
+     }
   },
   
   methods: {
@@ -27,6 +31,7 @@ export default {
       this.$store.dispatch("addNewSignUpEvent", this.event);
     },
   }
+  
 }
 </script>
 

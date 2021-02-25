@@ -1,6 +1,6 @@
 <template>
   <div> 
-    <h1>Events</h1>
+    <h1>Review events</h1>
     <div class="previous-events">
     <Event v-for="event in pullPreviousEvents" :key="event.id" :event="event"/>
     </div>

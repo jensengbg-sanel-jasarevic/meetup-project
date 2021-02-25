@@ -34,7 +34,7 @@ describe('SignUpBtn.vue', () => {
 
     });
 
-    it('should display button if computed property returns no data', () => {
+    it('should display a button if computed property returns no data', () => {
 		// Arrange
 		const wrapper = shallowMount(SignUpBtn, {
 			localVue,
@@ -52,7 +52,7 @@ describe('SignUpBtn.vue', () => {
 		// Act
         const button = wrapper.find('.sign-btn')
         const actual = button.exists()
-		const computed = wrapper.vm.event
+		const computed = wrapper.vm.checkIfSignedUp
 
 		// Assert
 		expect(actual).toBe(expected)
@@ -73,7 +73,7 @@ describe('SignUpBtn.vue', () => {
 		// Act
         const button = wrapper.find('.sign-btn')
         const actual = button.exists()
-		const computed = wrapper.vm.event
+		const computed = wrapper.vm.checkIfSignedUp
 
 		// Assert
 		expect(actual).toBe(expected)
@@ -94,7 +94,7 @@ describe('SignUpBtn.vue', () => {
 					}
 				},		
         })
-
+		
 		// Act
 		await wrapper.find('.sign-btn').trigger('click')
 		const actual = actions.addNewSignUpEvent
@@ -118,7 +118,7 @@ describe('SignUpBtn.vue', () => {
 		// Act
         const element = wrapper.find(".signed-up-event > span")
 		const actual = element.text()
-		const computed = wrapper.vm.event
+		const computed = wrapper.vm.checkIfSignedUp
 					
 		// Assert
 		expect(actual).toBe(expected)
@@ -141,7 +141,7 @@ describe('SignUpBtn.vue', () => {
 		
 		// Act
 		const actual = wrapper.find(".signed-up-event > span").exists()
-		const computed = wrapper.vm.event
+		const computed = wrapper.vm.checkIfSignedUp
 					
 		// Assert
 		expect(actual).toBeFalsy()

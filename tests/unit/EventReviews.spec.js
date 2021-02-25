@@ -14,10 +14,22 @@ import EventReviews from "@/components/EventReviews.vue";
       const expected = wrapper.vm.review.reviewText
 
       // Act
-      const actual = wrapper.find('.review-text').text()
+      const actual = wrapper.find('p').text()
 
       // Assert
       expect(actual).toBe(expected);
     });
+    
+    it("should not display text if no data from props received", () => {
+      // Arrange
+       const wrapper = shallowMount(EventReviews)
+       const expected = false
+ 
+       // Act
+       const actual = wrapper.find("p").exists()
+ 
+       // Assert
+       expect(actual).toBe(expected);
+     });
     
 })
