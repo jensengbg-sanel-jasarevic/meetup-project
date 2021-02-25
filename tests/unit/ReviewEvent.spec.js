@@ -1,5 +1,5 @@
 import { shallowMount, mount, createLocalVue } from '@vue/test-utils'
-import { mockPreviousEvent } from "./mockData"
+import { mockPreviousEvent, mockReview } from "./mockData"
 import Vuex from 'vuex';
 import ReviewEvent from "@/views/ReviewEvent.vue";
 
@@ -17,19 +17,25 @@ describe('ReviewEvent.vue', () => {
   let store;
   let state;
   let actions;
+  let getters;
 
   beforeEach(() => {
+    state = {
+      previousEvents: [ mockPreviousEvent() ],
+      reviews: [ mockReview() ]
+    },    
     actions = {
       getPreviousEvents: jest.fn(),
       getReviews: jest.fn()
-    };
-    state = {
-      previousEvents: [ mockPreviousEvent() ]
-    };
+    },
+    getters = {
+      getterReviews: () => state.reviews
+    }      
 
     store = new Vuex.Store({
       state,
-      actions
+      actions,
+      getters
     });
 
   });
@@ -41,7 +47,7 @@ describe('ReviewEvent.vue', () => {
       store,
       mocks: {
         $route
-      }
+      },
     })
     const expected = mockPreviousEvent()
     
@@ -97,7 +103,7 @@ describe('ReviewEvent.vue', () => {
       store,
       mocks: {
         $route
-      },      
+      },            
     });
     const expected = true
     

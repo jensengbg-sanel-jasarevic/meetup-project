@@ -1,11 +1,10 @@
 <template>
-  <div v-if="getAllReviews" class="all-reviews">
+  <div class="review-input-box">
     <form @submit.prevent="addNewReview">
-    <label for="review" :id="event.id">
-    <input v-model="inputValue" :id="event.id" type="text" class="review-input">
+    <label for="review">
+    <textarea v-model="inputValue" class="review-input" rows="4" cols="50"/>
     </label>
-
-    <button type="submit">Post review</button>
+    <button type="submit" class="review-submit-btn">Post review</button>
     </form>
 
     <EventReviews v-for="review in reviewsForSpecificEvent" :key="review.reviewID" :review="review" />
@@ -56,7 +55,36 @@ export default {
 </script>
 
 <style scoped>
-.review-input {
-  height: 45px;
+form {
+  display: flex;
+  flex-direction: column;
+}
+textarea{
+  display: block;
+  margin : 0 auto;
+  padding: 10px;
+  border-radius: 8px;
+  color: #555555;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-size: 1em;
+  line-height: 1.4em;
+  overflow: auto;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  resize: none;    
+}
+.review-submit-btn {
+  display: block;
+  margin : 0 auto;
+  background-color: #42b983;
+  border-radius: 8px;
+  border: none;
+  color: white;
+  padding: 10px 12px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-top: 1%;
 }
 </style>

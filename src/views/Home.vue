@@ -1,6 +1,9 @@
 <template>
-  <div class="upcoming-events">
-    <Event v-for="event in pullUpcomingEvents" :key="event.id" :event="event" />
+  <div> 
+    <h1>Events</h1>
+    <div class="upcoming-events">
+    <Event v-for="event in pullUpcomingEvents" :key="event.id" :event="event"/>
+    </div>
   </div>
 </template>
 
@@ -27,10 +30,12 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+text-align: center;
+}
 .upcoming-events {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 0.2rem;
 }
 </style>
 

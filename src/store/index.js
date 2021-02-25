@@ -11,6 +11,7 @@ export default new Vuex.Store({
     reviews: [],
     signedUp: []
   },
+  
   mutations: {
     pushUpcomingEvents(state, data) {
       state.upcomingEvents = data;

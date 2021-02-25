@@ -1,6 +1,9 @@
 <template>
-  <div class="previous-events">
-    <Event v-for="event in pullPreviousEvents" :key="event.id" :event="event" />
+  <div> 
+    <h1>Events</h1>
+    <div class="previous-events">
+    <Event v-for="event in pullPreviousEvents" :key="event.id" :event="event"/>
+    </div>
   </div>
 </template>
 
@@ -27,9 +30,12 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+  text-align: center;
+}
 .previous-events {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 0.2rem;
+  grid-gap: 0.1rem;
 }
 </style>

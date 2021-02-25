@@ -1,6 +1,5 @@
 <template>
       <div v-if="event" class="event-box" >
-
           <div class="event-info">
           <img class="event-image" :src="event.image" alt="">
           <p class="event-date">{{ event.date }}</p>
@@ -9,13 +8,11 @@
           </div>
 
          <div v-if="event.upcoming">
-          <button @click="routerToAttend(event.id)" class="upcoming-event-btn">More info</button>
+          <button @click="routerToSignUp(event.id)" class="upcoming-event-btn">More info</button>
          </div>
-         
          <div v-if="!event.upcoming">
-          <button @click="routerToReviews(event.id)" class="previous-event-btn">Reviews</button>
+          <button @click="routerToReview(event.id)" class="previous-event-btn">Reviews</button>
          </div>
-
      </div>
 </template>
 
@@ -27,11 +24,11 @@ export default {
     event: Object
   },
   
- methods: {
-    routerToAttend(eventID) {
+  methods: {
+    routerToSignUp(eventID) {
       this.$router.push("/signupevent/" + eventID);
     },   
-    routerToReviews(eventID) {
+    routerToReview(eventID) {
       this.$router.push("/reviewevent/" + eventID);
     },
   }
@@ -40,9 +37,27 @@ export default {
 </script>
 
 <style scoped>
+.event-box {
+  margin-left: 5%;
+}
+p, h4 {
+  margin: 5px;
+}
 .event-image {
-    border-radius: 10px;
-    height: 200px;
-    width: 300px;
+  border-radius: 10px;
+  height: 200px;
+  width: 300px;
+}
+.upcoming-event-btn, .previous-event-btn {
+  margin : 0 auto;
+  background-color: #42b983;
+  border-radius: 8px;
+  border: none;
+  color: white;
+  padding: 10px 12px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-top: 1%;
+  margin-bottom: 2%;
 }
 </style>
