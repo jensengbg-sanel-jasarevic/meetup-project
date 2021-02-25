@@ -23,7 +23,7 @@ export default new Vuex.Store({
       state.reviews = data;
     },    
     pushSignedUpEvents(state, data) {
-      state.attending = data;
+      state.signedUp = data;
     },
     addToReviews(state, newReview) {
       state.reviews.push(newReview);

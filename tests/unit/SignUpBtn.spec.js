@@ -14,8 +14,6 @@ const $route = {
 	}
   }
 
-// It should when confirm button clicked disable the button
-
 describe('SignUpBtn.vue', () => {
 	let store;
 	let state;
@@ -31,28 +29,78 @@ describe('SignUpBtn.vue', () => {
 
     });
 
-    it('should display button with correct text when component mounted', () => {
+    it('should display button if computed property returns no data', () => {
 		// Arrange
 		const wrapper = shallowMount(SignUpBtn, {
 			localVue,
 			store,
 			mocks: {
-				$route
-			  }			
+				$route: {
+					params: {
+						id: "222"
+						}
+					}
+				},		
         })
-		const expected = "Sign up for event"
+		const expected = true
 
 		// Act
         const button = wrapper.find('.sign-btn')
         const actual = button.exists()
-        const buttonText = button.text()
-			
-		// Assert
-		expect(actual).toBeTruthy()
-        expect(buttonText).toBe(expected)
-	})    
+		const computed = wrapper.vm.checkSignedUp
 
-	it('should not have element with class ".event-registered" if computed property is returning false', () => {
+		// Assert
+		expect(actual).toBe(expected)
+		expect(computed).toBeFalsy()
+	}) 
+	
+	it('should not display button if computed property returns data', () => {
+		// Arrange
+		const wrapper = shallowMount(SignUpBtn, {
+			localVue,
+			store,
+			mocks: {
+				$route: {
+					params: {
+						id: "111"
+						}
+					}
+				},		
+        })
+		const expected = true
+
+		// Act
+        const button = wrapper.find('.sign-btn')
+        const actual = button.exists()
+		const computed = wrapper.vm.checkSignedUp
+
+		// Assert
+		expect(actual).toBe(expected)
+		expect(computed).toBeTruthy()
+	})
+
+	it('it should display span element with text if computed property returns data', () => {
+		// Arrange
+		const wrapper = shallowMount(SignUpBtn, {
+            localVue,
+            store,
+			mocks: {
+				$route
+			  },			           
+		})
+        const expected = "Event signed up!"
+        
+		// Act
+        const element = wrapper.find(".signed-up-event > span")
+		const actual = element.text()
+		const computed = wrapper.vm.checkSignedUp
+					
+		// Assert
+		expect(actual).toBe(expected)
+		expect(computed).toBeTruthy()
+	})
+
+	it('should not display span element if computed property returns no data', () => {
 		// Arrange
 		const wrapper = shallowMount(SignUpBtn, {
 			localVue,
@@ -67,34 +115,12 @@ describe('SignUpBtn.vue', () => {
 		})
 		
 		// Act
-		const element = wrapper.find(".event-registered").exists()
-		const actual = wrapper.vm.checkSignedUp
+		const actual = wrapper.find(".signed-up-event > span").exists()
+		const computed = wrapper.vm.checkSignedUp
 					
 		// Assert
-		expect(element).toBeFalsy()
 		expect(actual).toBeFalsy()
-	})
-
-    it('should have element with class ".signed-up" display text if computed property not return false', () => {
-		// Arrange
-		const wrapper = shallowMount(SignUpBtn, {
-            localVue,
-            store,
-			mocks: {
-				$route
-			  },			           
-		})
-        const expected = "Confirmation: Signed up for this event!"
-        
-		// Act
-        const element = wrapper.find(".signed-up")
-		const elementText = element.text()
-		const actual = wrapper.vm.checkSignedUp
-					
-		// Assert
-        expect(element).toBeTruthy()
-		expect(elementText).toBe(expected)
-		expect(actual).toBeTruthy()
+		expect(computed).toBeFalsy()
 	})
 
 })

@@ -37,5 +37,17 @@ text-align: center;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
+@media(max-width: 1000px) {
+    .upcoming-events {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media(max-width: 800px) {
+    .upcoming-events {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
 </style>
 

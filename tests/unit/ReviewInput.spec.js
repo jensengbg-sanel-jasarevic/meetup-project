@@ -36,7 +36,7 @@ describe('ReviewInput.vue', () => {
       })
     })
 
-    it('should check if input field store correct value in components data property', async () => {
+    it('should check if textarea field store correct value in components data property', async () => {
       // Arrange
       const wrapper = shallowMount(ReviewInput, { 
         localVue,
@@ -48,7 +48,7 @@ describe('ReviewInput.vue', () => {
       const expected = "Input example review text"
 
       // Act
-      const input = wrapper.find('.review-input')
+      const input = wrapper.find('textarea')
       await input.setValue('Input example review text')
       const actual = wrapper.vm.inputValue
       

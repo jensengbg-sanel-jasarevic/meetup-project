@@ -38,4 +38,16 @@ h1 {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 0.1rem;
 }
+@media(max-width: 1000px) {
+    .previous-events {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media(max-width: 800px) {
+    .previous-events {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
 </style>

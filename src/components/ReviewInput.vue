@@ -2,7 +2,7 @@
   <div class="review-input-box">
     <form @submit.prevent="addNewReview">
     <label for="review">
-    <textarea v-model="inputValue" class="review-input" rows="4" cols="50"/>
+    <textarea v-model="inputValue" rows="4" />
     </label>
     <button type="submit" class="review-submit-btn">Post review</button>
     </form>
@@ -60,9 +60,10 @@ form {
   flex-direction: column;
 }
 textarea{
+  min-width: 25vw;
   display: block;
   margin : 0 auto;
-  padding: 10px;
+  padding: 1.1em;
   border-radius: 8px;
   color: #555555;
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -86,5 +87,6 @@ textarea{
   font-size: 1em;
   cursor: pointer;
   margin-top: 1%;
+  outline: none;
 }
 </style>

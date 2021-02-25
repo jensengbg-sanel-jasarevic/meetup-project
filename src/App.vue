@@ -55,7 +55,7 @@ body {
   }
 }
 footer {
-  background-color:#2c3e50;
+  background-color:#212121;
   height: 20vh;
   color: white;
   text-align: center;

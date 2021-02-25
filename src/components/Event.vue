@@ -59,5 +59,6 @@ p, h4 {
   cursor: pointer;
   margin-top: 1%;
   margin-bottom: 2%;
+  outline: none;
 }
 </style>
