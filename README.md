@@ -17,7 +17,7 @@ Systemtester och integrationstester<br/>
 Jag har testat routing, om man klickar på en knapp så kontrollera att man kommer till rätt sida.
 
 Acceptanstester<br/>
-Om man vill lämna en kommentar i appen testar att först skriva text i textfältet sedan kontrollera om datan har sparats i.
+Om man vill lämna en kommentar i appen testar att först skriva text i textfältet sedan kontrollera om datan har sparats i komponent.
 
 ### Demonstrera att du kan resonera och reflektera kring kursinnehållet, genom att berätta vad du tycker är det viktigaste kursen har handlat om.
 Allting har varit viktigt och jag kommer ha nytta av det i framtiden. Men det som jag mest lärt mig och använt mest under kursen är att jobba med versionshantering (git) och göra enhetstester för programkod. Det har varit enklare om man jobbar med bransch i git, när man vill lägga till något i en app kan man skapa en branch och jobba i den, sedan när man är färdig kan man inkludera den i dev/main branch. Det som git mest underlättar med är om man jobbar med flera personer, man bygger tillsammans en app genom att jobba i egna branch. Under projektet gör man merge av sina bransch till dev/main om det blir problem med att inkludera dem kan man lösa det genom att ta bort den programkod som det är konflikt med.
