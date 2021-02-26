@@ -13,10 +13,12 @@ localVue.use(Vuex);
 
   beforeEach(() => {
     state = {
-      upcomingEvents: [ mockEvent() ]
+      upcomingEvents: [ mockEvent() ],
+      signedUp: [ mockEvent() ]
     };
     actions = {
       getUpcomingEvents: jest.fn(),
+      getSignedUpEvents: jest.fn()
     };
     
     store = new Vuex.Store({

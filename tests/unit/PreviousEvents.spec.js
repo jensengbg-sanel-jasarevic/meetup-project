@@ -14,6 +14,8 @@ describe('PreviousEvents.vue', () => {
     beforeEach(() => {
       actions = {
         getPreviousEvents: jest.fn(),
+        getUpcomingEvents: jest.fn(),
+        getSignedUpEvents: jest.fn()
       };
       state = {
         previousEvents: [ mockPreviousEvent() ]

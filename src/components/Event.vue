@@ -9,7 +9,9 @@
 
          <div v-if="event.upcoming">
           <button @click="routerToSignUp(event.id)" class="upcoming-event-btn">More info</button>
+            <span v-if="signedUpForEvent" class="event-signed">Event signed up!</span>
          </div>
+
          <div v-if="!event.upcoming">
           <button @click="routerToReview(event.id)" class="previous-event-btn">Reviews</button>
          </div>
@@ -22,6 +24,22 @@ export default {
 
   props: {
     event: Object
+  },
+  created() {
+    this.$store.dispatch("getUpcomingEvents");
+    this.$store.dispatch("getSignedUpEvents");  
+  },
+  
+  computed: {
+    pullUpcomingEvents() {
+      return this.$store.state.upcomingEvents;
+    },
+    pullAllSignedUpEvents() {
+      return this.$store.state.signedUp;
+    },
+    signedUpForEvent() {
+      return this.pullAllSignedUpEvents.find((signedUp) => signedUp.id === this.event.id);
+    }
   },
   
   methods: {
@@ -60,5 +78,16 @@ p, h4 {
   margin-top: 1%;
   margin-bottom: 2%;
   outline: none;
+}
+.event-signed {
+  text-align: center;
+  background-color: #FFAE42;
+  border-radius: 8px;
+  border: none;
+  color: white;
+  padding: 5px 5px;
+  font-size: 1em;
+  display: table;
+  margin-bottom: 1%;
 }
 </style>
