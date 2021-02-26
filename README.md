@@ -10,13 +10,13 @@ Jag har använt Heroku som molntjänst där jag publicerar en Docker container m
 https://meet-up-pro.herokuapp.com/#/
 
 ### Berätta vilka level ups du har implementerat
-API/databas 
+API/databas<br/> 
 Jag använde Web Storage API för att spara data lokalt i webbläsaren. Exempel mär man anmäler sig till events i appen sparas event i local storage.
 
-Systemtester och integrationstester
+Systemtester och integrationstester<br/>
 Jag har testat routing, om man klickar på en knapp så kontrollera att man kommer till rätt sida.
 
-Acceptanstester 
+Acceptanstester<br/>
 Om man vill lämna en kommentar i appen testar att först skriva text i textfältet sedan kontrollera om datan har sparats i.
 
 ### Demonstrera att du kan resonera och reflektera kring kursinnehållet, genom att berätta vad du tycker är det viktigaste kursen har handlat om.
