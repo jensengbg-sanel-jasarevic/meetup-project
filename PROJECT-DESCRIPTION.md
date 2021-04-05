@@ -8,7 +8,6 @@
 1. [Bedömning](#5-bedömning)
 1. [Appendix: förslag till projektplan](#6-appendix-förslag-till-projektplan)
 
-
 ---
 ### 1. Introduktion
 > *Meetup is about connecting people with something in common. While the connections begin online, the real memories are made at events. Meetup events are real-life gatherings where members and organizers get together to connect, discuss, and practice activities related to their shared interests.*
