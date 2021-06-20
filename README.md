@@ -1,14 +1,11 @@
-
-### Namn
-Sanel Jasarevic
+#### URL
+https://meet-up-tdd.herokuapp.com/
 
 ### Github repo
 https://github.com/jensengbg-sanel-jasarevic/meetup-project
 
 ### Berätta vilken molntjänst du använt för att publicera. Länk till den publicerade appen - alltså en länk som man kan klicka på för att köra appen
 Jag har använt Heroku som molntjänst där jag publicerar en Docker container med appen.
-####
-* URL: https://meet-up-tdd.herokuapp.com/
 
 ### Berätta vilka level ups du har implementerat
 API/databas<br/> 
